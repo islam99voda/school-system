@@ -39,13 +39,20 @@ class GradeController extends Controller
      */
     public function store(StoreGrades $request)
     {
-        $validated = $request->validated();
-        $grade = new Grade();
-        //الخانة الانجليزي خزنلي فيها كذا والعربي كذا Nameهاتلي الجدول اللي اسمه 
-        $grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
-        $grade->Notes = $request->Notes;
-        $grade->save();
-        return redirect()->back()->with('success', 'Grade created successfully.');
+
+        try {
+            $validated = $request->validated();
+            $grade = new Grade();
+            $grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
+            $grade->Notessss = $request->Notes;
+            $grade->save();
+            return redirect()->back()->with('success', 'Grade created successfully.');
+        }
+        
+        catch (\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+        
     }
     
 
@@ -72,16 +79,23 @@ class GradeController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(StoreGrades $request)
     {
-        //
+    try {
+
+        $validated = $request->validated();
+        $Grades = Grade::findOrFail($request->id);
+        $Grades->update([
+            $Grades->Name = ['ar' => $request->Name, 'en' => $request->Name_en],
+            $Grades->Notes = $request->Notes,
+        ]);
+        return redirect()->route('Grades.index');
+    }
+    catch
+    (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
     }
 
     /**
@@ -90,8 +104,9 @@ class GradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        //
+        $Grades = Grade::findOrFail($request->id)->delete();
+        return redirect()->back();
     }
 }

@@ -15,18 +15,9 @@
 @section('content')
 <!-- row -->
 <div class="row">
-
-
-@if ($errors->any())
-    <div class="error">{{ $errors->first('Name') }}</div>
-@endif
-
-
-
 <div class="col-xl-12 mb-30">
     <div class="card card-statistics h-100">
         <div class="card-body">
-
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -36,7 +27,6 @@
                     </ul>
                 </div>
             @endif
-
             <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                 {{ trans('Grades_trans.add_Grade') }}
             </button>
@@ -132,8 +122,8 @@
                                 </div>
                             </div>
 
-                            <!-- delete_modal_Grade -->
-                            <div class="modal fade" id="delete{{ $Grade->id }}" tabindex="-1" role="dialog"
+                             <!-- delete_modal_Grade -->
+                             <div class="modal fade" id="delete{{ $Grade->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -165,8 +155,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         @endforeach
                 </table>
             </div>
