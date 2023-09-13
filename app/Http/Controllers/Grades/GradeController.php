@@ -38,13 +38,20 @@ class GradeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreGrades $request)
-    {
+{
+        // Use the 'exists' method to check if a grade with the given name exists
+        $existingGrade = Grade::where('Name->ar', $request->Name)
+        ->orWhere('Name->en', $request->Name_en)
+        ->exists();
 
+        if ($existingGrade) {
+        return redirect()->back()->withErrors(trans('Grades_trans.exists'));
+        }
         try {
             $validated = $request->validated();
             $grade = new Grade();
             $grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
-            $grade->Notessss = $request->Notes;
+            $grade->Notes = $request->Notes;
             $grade->save();
             return redirect()->back()->with('success', 'Grade created successfully.');
         }
@@ -53,7 +60,7 @@ class GradeController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
         
-    }
+}
     
 
 

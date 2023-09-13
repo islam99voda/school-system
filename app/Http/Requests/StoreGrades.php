@@ -26,7 +26,6 @@ class StoreGrades extends FormRequest
         return [
             'Name.required' => trans('validation.required'),
             'Name_en.required' => trans('validation.required'),
-
         ];
     }
 }
