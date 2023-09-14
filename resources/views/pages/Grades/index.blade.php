@@ -30,6 +30,9 @@
             <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                 {{ trans('Grades_trans.add_Grade') }}
             </button>
+            <button type="button" class="button x-small" id="btn_delete_all">
+                {{ trans('My_Classes_trans.delete_checkbox') }}
+            </button>
             <br><br>
 
             <div class="table-responsive">

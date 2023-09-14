@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Grades;
 
 use App\Http\Models\Grade;
 use Illuminate\Http\Request;
+use App\Http\Models\Classroom;
 use App\Http\Requests\StoreGrades;
-use App\Models\Grade as ModelsGrade;
 use Illuminate\Routing\Controller;
+use App\Models\Grade as ModelsGrade;
 
 class GradeController extends Controller
 {
@@ -111,9 +112,21 @@ class GradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(request $request)
+    public function destroy(Request $request)
     {
-        $Grades = Grade::findOrFail($request->id)->delete();
-        return redirect()->back();
+        // المرحلة الدراسية اللي جايلك موجود في جدول الصفوف هاته id قبل ماتحذف لو لقيت  
+        $MyClass_id = Classroom::where('Grade_id',$request->id)->pluck('Grade_id');
+  
+        if($MyClass_id->count() == 0){ //لو ملقتوش أحذف عادي
+  
+            $Grades = Grade::findOrFail($request->id)->delete();
+            return redirect()->route('Grades.index');
+        }
+
+        else{
+            return redirect()->route('Grades.index');
+  
+        }
+  
     }
 }

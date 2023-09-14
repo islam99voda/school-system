@@ -61,7 +61,6 @@ class ClassroomController extends Controller
 
             }
 
-            toastr()->success(trans('messages.success'));
             return redirect()->route('Classrooms.index');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -116,7 +115,6 @@ class ClassroomController extends Controller
                 $Classrooms->Name_Class = ['ar' => $request->Name, 'en' => $request->Name_en],
                 $Classrooms->Grade_id = $request->Grade_id,
             ]);
-            toastr()->success(trans('messages.Update'));
             return redirect()->route('Classrooms.index');
         }
 
@@ -128,17 +126,11 @@ class ClassroomController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return Response
-     */
+
     public function destroy(Request $request)
     {
 
         $Classrooms = Classroom::findOrFail($request->id)->delete();
-        toastr()->error(trans('messages.Delete'));
         return redirect()->route('Classrooms.index');
 
     }
@@ -149,7 +141,6 @@ class ClassroomController extends Controller
         $delete_all_id = explode(",", $request->delete_all_id);
 
         Classroom::whereIn('id', $delete_all_id)->Delete();
-        toastr()->error(trans('messages.Delete'));
         return redirect()->route('Classrooms.index');
     }
 
@@ -159,7 +150,6 @@ class ClassroomController extends Controller
         $Grades = Grade::all();
         $Search = Classroom::select('*')->where('Grade_id','=',$request->Grade_id)->get();
         return view('pages.My_Classes.My_Classes',compact('Grades'))->withDetails($Search);
-
     }
 
 
