@@ -27,9 +27,11 @@
                     </ul>
                 </div>
             @endif
+            <!--زرار إضافة مرحلة-->
             <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                 {{ trans('Grades_trans.add_Grade') }}
             </button>
+            <!--زرار حذف الصفوف المختارة-->
             <button type="button" class="button x-small" id="btn_delete_all">
                 {{ trans('My_Classes_trans.delete_checkbox') }}
             </button>
@@ -55,13 +57,14 @@
                                 <td>{{ $Grade->Name }}</td>
                                 <td>{{ $Grade->Notes }}</td>
                                 <td>
+                                <!--زرار موديل إضافة مرحلة-->
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                         data-target="#edit{{ $Grade->id }}"
                                         title="{{ trans('Grades_trans.Edit') }}"><i class="fa fa-edit"></i></button>
+                                <!--زرار موديل حذف مرحلة-->
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#delete{{ $Grade->id }}"
-                                        title="{{ trans('Grades_trans.Delete') }}"><i
-                                            class="fa fa-trash"></i></button>
+                                        title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
 
@@ -81,8 +84,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- add_form -->
-                                            <form action="{{ route('Grades.update', 'test') }}" method="post">
+                                            <!-- update_form -->
+                                            <form action="{{ route('Grades.update', $Grade->id) }}" method="post">
                                                 {{ method_field('patch') }}
                                                 @csrf
                                                 <div class="row">
@@ -111,7 +114,6 @@
                                                         rows="3">{{ $Grade->Notes }}</textarea>
                                                 </div>
                                                 <br><br>
-
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">{{ trans('Grades_trans.Close') }}</button>

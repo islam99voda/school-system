@@ -36,13 +36,11 @@
                 <button type="button" class="button x-small" id="btn_delete_all">
                     {{ trans('My_Classes_trans.delete_checkbox') }}
                 </button>
-
-
             <br><br>
             <!--بحث بحسب -->
                 <form action="{{ route('Filter_Classes') }}" method="POST">
                     {{ csrf_field() }}
-                    <select class="selectpicker" data-style="btn-info" name="Grade_id" required onchange="this.form.submit()">
+                    <select class="selectpicker" data-style="btn-info" name="Grade_id" required  onchange="this.form.submit()">
                         <option value="" selected disabled>{{ trans('My_Classes_trans.Search_By_Grade') }}</option>
                         @foreach ($Grades as $Grade)
                             <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
@@ -50,14 +48,12 @@
                     </select>
                 </form>
 
-
-
             <div class="table-responsive">
                 <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
                     style="text-align: center">
                     <thead>
                         <tr>
-                            <!--تحديد الكل-->
+                            <!--زرار تحديد الكل-->
                             <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
                             <th>#</th>
                             <th>{{ trans('My_Classes_trans.Name_class') }}</th>
@@ -67,31 +63,31 @@
                     </thead>
                     <tbody>
 
-                    @if (isset($details))
+                    @if (isset($details)) <!--if user choice search ass-->
 
-                        <?php $List_Classes = $details; ?>
+                        <?php $List_Classes = $details; ?> <!--note: details have data -->
                     @else
 
-                        <?php $List_Classes = $My_Classes; ?>
+                        <?php $List_Classes = $My_Classes; ?> <!--note: My_Classes dosent have data -->
                     @endif
 
                         <?php $i = 0; ?>
-
                         @foreach ($List_Classes as $My_Class)
                             <tr>
-                                <?php $i++; ?>
-                                <td> <input type="checkbox"  value="{{ $My_Class->id }}" class="box1" > </td>
-                                <td>{{ $i }}</td>
+                                <td>  <input type="checkbox"  value="{{ $My_Class->id }}" class="box1" >  </td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $My_Class->Name_Class }}</td>
                                 <td>{{ $My_Class->Grades->Name }}</td>
                                 <td>
+                                    <!--زرار التعديل-->
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                         data-target="#edit{{ $My_Class->id }}"
                                         title="{{ trans('Grades_trans.Edit') }}"><i class="fa fa-edit"></i></button>
+                                    <!--زرار الحذف-->
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#delete{{ $My_Class->id }}"
                                         title="{{ trans('Grades_trans.Delete') }}"><i
-                                            class="fa fa-trash"></i></button>
+                                        class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
 
@@ -154,7 +150,6 @@
 
                                                 </div>
                                                 <br><br>
-
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">{{ trans('Grades_trans.Close') }}</button>
@@ -167,8 +162,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <!-- delete_modal_Grade -->
                             <div class="modal fade" id="delete{{ $My_Class->id }}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -230,10 +223,9 @@
                     @csrf
                     <div class="card-body">
                         <div class="repeater">
-                            <div data-repeater-list="List_Classes">
+                            <div data-repeater-list="List_Classes"> <!--List_Classes-> array-->
                                 <div data-repeater-item>
                                     <div class="row">
-
                                         <div class="col">
                                             <label for="Name"
                                                 class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
@@ -350,7 +342,7 @@
     $(function() {
         $("#btn_delete_all").click(function() {
             var selected = new Array();
-            $("#datatable input[type=checkbox]:checked").each(function() {
+            $("#datatable input[type=checkbox]:checked").each(function() { //لو متحدد
                 selected.push(this.value);
             });
 //modelلو مش متعلم على حاجة متفتحش ال

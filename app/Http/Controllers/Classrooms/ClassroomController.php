@@ -12,14 +12,9 @@ use App\Http\Requests\StoreClassroom;
 class ClassroomController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+
     public function index()
     {
-
         $My_Classes = Classroom::all();
         $Grades = Grade::all();
         return view('pages.My_Classes.My_Classes', compact('My_Classes', 'Grades'));

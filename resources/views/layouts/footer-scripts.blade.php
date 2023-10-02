@@ -45,7 +45,7 @@
 @endif
 
 
-
+<!--تفعيل تحديد الكل-->
 <script>
     function CheckAll(className, elem) {
         var elements = document.getElementsByClassName(className);

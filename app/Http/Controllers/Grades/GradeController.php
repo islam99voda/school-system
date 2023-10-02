@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Models\Classroom;
 use App\Http\Requests\StoreGrades;
 use Illuminate\Routing\Controller;
-use App\Models\Grade as ModelsGrade;
 
 class GradeController extends Controller
 {
@@ -22,27 +21,12 @@ class GradeController extends Controller
         return view('pages.Grades.index',compact('Grades'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreGrades $request)
 {
-        // Use the 'exists' method to check if a grade with the given name exists
-        $existingGrade = Grade::where('Name->ar', $request->Name)
-        ->orWhere('Name->en', $request->Name_en)
+        //'exists' method to check if the grade with the given value already exists
+        $existingGrade = Grade::where('Name->ar', $request->Name) //input ar
+        ->orWhere('Name->en', $request->Name_en) //input en
         ->exists();
 
         if ($existingGrade) {
@@ -56,42 +40,16 @@ class GradeController extends Controller
             $grade->save();
             return redirect()->back()->with('success', 'Grade created successfully.');
         }
-        
         catch (\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-        
 }
     
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
 
     public function update(StoreGrades $request)
     {
     try {
-
         $validated = $request->validated();
         $Grades = Grade::findOrFail($request->id);
         $Grades->update([
@@ -106,12 +64,8 @@ class GradeController extends Controller
     }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function destroy(Request $request)
     {
         // المرحلة الدراسية اللي جايلك موجود في جدول الصفوف هاته id قبل ماتحذف لو لقيت  
@@ -122,11 +76,8 @@ class GradeController extends Controller
             $Grades = Grade::findOrFail($request->id)->delete();
             return redirect()->route('Grades.index');
         }
-
         else{
             return redirect()->route('Grades.index');
-  
         }
-  
     }
 }

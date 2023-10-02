@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Http\Controllers\Sections;
+
+use App\Http\Models\Grade;
+use App\Http\Models\section;
+use Illuminate\Http\Request;
+use App\Http\Models\Classroom;
+use Illuminate\Routing\Controller;
+use App\Http\Requests\StoreSections;
+
+class SectionController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+  {
+    $Grades = Grade::with(['Sections'])->get(); //اللي بيجي الاقسام المربوط بيها المراحل Sectionsهات العلاقة اللي اسمها 
+    $list_Grades = Grade::all();
+    return view('pages.Sections.Sections',compact('Grades','list_Grades'));
+  }
+
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        try {
+            $Sections = new section();
+            $Sections->Name_Section = ['ar' => $request->Name_Section_Ar, 'en' => $request->Name_Section_En];
+            $Sections->Grade_id = $request->Grade_id;
+            $Sections->Class_id = $request->Class_id;
+            $Sections->Status = 1;
+            $Sections->save();      
+            return redirect()->route('Sections.index');
+        }
+      
+        catch (\Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function update(StoreSections $request)
+    {
+  
+      try {
+        $validated = $request->validated();
+        $Sections = Section::findOrFail($request->id);
+  
+        $Sections->Name_Section = ['ar' => $request->Name_Section_Ar, 'en' => $request->Name_Section_En];
+        $Sections->Grade_id = $request->Grade_id;
+        $Sections->Class_id = $request->Class_id;
+  
+        if(isset($request->Status)) {
+          $Sections->Status = 1;
+        } else {
+          $Sections->Status = 2;
+        }
+  
+  
+         
+  
+  
+        $Sections->save();  
+        return redirect()->route('Sections.index');
+    }
+    catch
+    (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
+  
+    }
+  
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy(request $request)
+    {
+  
+      Section::findOrFail($request->id)->delete();
+      return redirect()->route('Sections.index');
+  
+    }
+
+    public function getclasses($id)
+    {//اللي في جدول الصف هاتلي اسم الصف وقيمته idيساوي ال ajaxبتاع اسم المرحلة اللي جايلك من ال idلما ال
+        $list_classes = Classroom::where("Grade_id", $id)->pluck("Name_Class", "id");
+        return $list_classes;
+    }
+}
