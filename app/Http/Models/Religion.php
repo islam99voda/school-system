@@ -10,4 +10,5 @@ class Religion extends Model
     use HasTranslations;
     public $translatable = ['Name'];
     protected $fillable =['Name'];
+
 }

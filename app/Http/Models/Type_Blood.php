@@ -9,5 +9,6 @@ class Type_Blood extends Model
 {
     use HasFactory;
     protected $fillable=['Name'];
+    
 }
 
