@@ -40,10 +40,14 @@ Route::group(
         Route::resource('Sections', 'SectionController');
         Route::get('/classes/{id}', 'SectionController@getclasses');
 
-    //==============================parents============================
-
-    Route::view('add_parent','livewire.show_Form')->name('add_parent');
 });
+    //==============================parents============================
+    Route::view('add_parent','livewire.show_Form')->name('add_parent');
+    
+    //==============================Teachers============================
+    Route::group(['namespace' => 'Teachers'], function () {
+        Route::resource('Teachers', 'TeacherController');
+    });
 
 });
     
