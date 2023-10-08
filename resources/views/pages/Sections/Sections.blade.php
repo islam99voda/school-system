@@ -177,23 +177,13 @@
                                                                                             </select>
                                                                                         </div>
                                                                                         <br>
-
+                                                                                        <!-- edit_modal_Grade -->
                                                                                         <div class="col">
                                                                                             <div class="form-check">
-
                                                                                                 @if ($list_Sections->Status === 1)
-                                                                                                    <input
-                                                                                                        type="checkbox"
-                                                                                                        checked
-                                                                                                        class="form-check-input"
-                                                                                                        name="Status"
-                                                                                                        id="exampleCheck1">
+                                                                                                    <input type="checkbox" checkedclass="form-check-input" name="Status" id="exampleCheck1">
                                                                                                 @else
-                                                                                                    <input
-                                                                                                        type="checkbox"
-                                                                                                        class="form-check-input"
-                                                                                                        name="Status"
-                                                                                                        id="exampleCheck1">
+                                                                                                    <input type="checkbox"class="form-check-input"name="Status"id="exampleCheck1">
                                                                                                 @endif
                                                                                                 <label
                                                                                                     class="form-check-label"
@@ -201,12 +191,18 @@
 
                                                                                                     <div class="col">
                                                                                                         <label for="inputName" class="control-label">{{ trans('Sections_trans.Name_Teacher') }}</label>
-                                                                                                        
+                                                                                                        <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">
+                                                                                                            @foreach($list_Sections->teachers as $teacher) <!--كل قسم هات المدرس بتاعه-->
+                                                                                                                <option selected value="{{$teacher['id']}}">{{$teacher['Name']}}</option>
+                                                                                                            @endforeach
+
+                                                                                                            @foreach($teachers as $teacher) <!--هات كل المدرسين-->
+                                                                                                                <option value="{{$teacher->id}}">{{$teacher->Name}}</option>
+                                                                                                            @endforeach
+                                                                                                        </select>
                                                                                                     </div>
                                                                                             </div>
                                                                                         </div>
-
-
                                                                                 </div>
                                                                                 <div class="modal-footer">
                                                                                     <button type="button"
@@ -338,6 +334,9 @@
                                         <div class="col">
                                             <label for="inputName" class="control-label">{{ trans('Sections_trans.Name_Teacher') }}</label>
                                             <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">
+                                                @foreach($teachers as $teacher)
+                                                    <option value="{{$teacher->id}}">{{$teacher->Name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                 </div>

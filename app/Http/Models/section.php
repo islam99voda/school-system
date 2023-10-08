@@ -21,4 +21,10 @@ class section extends Model
     {
         return $this->belongsTo('App\Http\Models\Classroom', 'Class_id');
     }
+
+    // علاقة الاقسام مع المعلمين
+    public function teachers() 
+    {
+        return $this->belongsToMany('App\Http\Models\Teacher','teacher_section'); //teacher_sectionاللي اسمه bivit table لازم احط اسم ال
+    }
 }

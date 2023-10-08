@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sections;
 
 use App\Http\Models\Grade;
 use App\Http\Models\section;
+use App\Http\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Models\Classroom;
 use Illuminate\Routing\Controller;
@@ -20,7 +21,8 @@ class SectionController extends Controller
   {
     $Grades = Grade::with(['Sections'])->get(); //اللي بيجي الاقسام المربوط بيها المراحل Sectionsهات العلاقة اللي اسمها 
     $list_Grades = Grade::all();
-    return view('pages.Sections.Sections',compact('Grades','list_Grades'));
+    $teachers = Teacher::all();
+    return view('pages.Sections.Sections',compact('Grades','list_Grades','teachers'));
   }
 
 
@@ -33,6 +35,7 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
+
         try {
             $Sections = new section();
             $Sections->Name_Section = ['ar' => $request->Name_Section_Ar, 'en' => $request->Name_Section_En];
@@ -40,6 +43,7 @@ class SectionController extends Controller
             $Sections->Class_id = $request->Class_id;
             $Sections->Status = 1;
             $Sections->save();      
+            $Sections->teachers()->attach($request->teacher_id);
             return redirect()->route('Sections.index');
         }
       
@@ -64,11 +68,15 @@ class SectionController extends Controller
         } else {
           $Sections->Status = 2;
         }
-  
-  
-         
-  
-  
+          
+        // update pivot tABLE
+        if (isset($request->teacher_id)) {
+          $Sections->teachers()->sync($request->teacher_id);
+      } else {
+          $Sections->teachers()->sync(array());
+      }
+
+        
         $Sections->save();  
         return redirect()->route('Sections.index');
     }
