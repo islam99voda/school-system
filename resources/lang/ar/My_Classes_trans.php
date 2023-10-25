@@ -8,7 +8,7 @@ return [
     'edit_class'=> 'تعديل صف',
     'delete_class'=> 'حذف صف',
     'delete_checkbox'=> 'حذف الصفوف المختارة',
-    'Search_By_Grade'=> 'تحديد المرحلة',
+    'Search_By_Grade'=> 'بحث باسم المرحلة',
     'Warning_class'=> 'هل انت متاكد من عملية الحذف ؟',
     'required_ar'=>'يرجي ادخال اسم الصف باللغة العربية',
     'required_en'=>'يرجي ادخال اسم الصف باللغة الانجليزية',
