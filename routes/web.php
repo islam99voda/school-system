@@ -14,7 +14,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 // routes/web.php
-
+Route::get('/', function () {
+    return view('auth.login');
+});
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
@@ -68,3 +70,11 @@ Route::group([
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
