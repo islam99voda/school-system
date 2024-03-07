@@ -19,7 +19,7 @@ class SectionController extends Controller
      */
     public function index()
   {
-    $Grades = Grade::with(['Sections'])->get(); //اللي بيجي الاقسام المربوط بيها المراحل Sectionsهات العلاقة اللي اسمها 
+    $Grades = Grade::with(['Sections'])->get(); //كل كل المراحل بأقسامها المربوطة فيها
     $list_Grades = Grade::all();
     $teachers = Teacher::all();
     return view('pages.Sections.Sections',compact('Grades','list_Grades','teachers'));
@@ -41,7 +41,7 @@ class SectionController extends Controller
             $Sections->Name_Section = ['ar' => $request->Name_Section_Ar, 'en' => $request->Name_Section_En];
             $Sections->Grade_id = $request->Grade_id;
             $Sections->Class_id = $request->Class_id;
-            $Sections->Status = 1;
+            $Sections->Status = 1; // defult هخزن فيها 1 ك
             $Sections->save();      
             $Sections->teachers()->attach($request->teacher_id);
             return redirect()->route('Sections.index');

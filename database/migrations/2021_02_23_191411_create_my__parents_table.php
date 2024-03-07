@@ -18,16 +18,16 @@ class CreateMyParentsTable extends Migration
             $table->string('Email')->unique();
             $table->string('Password');
 
-            //Father information
+            //Fatherinformation
             $table->string('Name_Father');
             $table->string('National_ID_Father');
             $table->string('Passport_ID_Father');
             $table->string('Phone_Father');
             $table->string('Job_Father');
-            $table->bigInteger('Nationality_Father_id')->unsigned(); 
+            $table->bigInteger('Nationality_Father_id')->unsigned();
             $table->bigInteger('Blood_Type_Father_id')->unsigned();
             $table->bigInteger('Religion_Father_id')->unsigned();
-            $table->string('Address_Father'); 
+            $table->string('Address_Father');
 
             //Mother information
             $table->string('Name_Mother');
@@ -40,6 +40,7 @@ class CreateMyParentsTable extends Migration
             $table->bigInteger('Religion_Mother_id')->unsigned();
             $table->string('Address_Mother');
             $table->timestamps();
+
         });
     }
 

@@ -22,6 +22,7 @@ class CreateTeacherSectionTable extends Migration
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
 
+
         });
     }
 

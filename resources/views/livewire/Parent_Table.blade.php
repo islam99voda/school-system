@@ -1,4 +1,8 @@
-<button class="btn btn-success btn-sm btn-lg pull-right" wire:click="showformadd" type="button">{{ trans('Parent_trans.add_parent') }}</button><br><br>
+
+<!--زرار إضافة ولي أمر-->
+<button class="btn btn-success btn-sm btn-lg pull-right" wire:click="showformadd" type="button">
+    {{ trans('Parent_trans.add_parent') }}
+</button><br><br>
 <div class="table-responsive">
     <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
            style="text-align: center">

@@ -6,12 +6,12 @@
                 <ul class="nav navbar-nav side-menu" id="sidebarnav">
                     <!-- menu item Dashboard-->
                     <li>
-    <a href="{{ url('/dashboard') }}">
-        <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">{{trans('main_trans.Dashboard')}}</span>
-        </div>
-        <div class="clearfix"></div>
-    </a>
-</li>
+                        <a href="{{route('dashboard')}}">
+                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">{{trans('main_trans.Dashboard')}}</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
                     <!-- menu title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">{{trans('main_trans.Programname')}} </li>
 
@@ -86,8 +86,8 @@
                     </li>
 
 
-                    <!-- Parents-->
-                    <li>
+                    <!-- Parents--> 
+                    <li> 
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu">
                             <div class="pull-left"><i class="fas fa-user-tie"></i><span
                                     class="right-nav-text">{{trans('main_trans.Parents')}}</span></div>
@@ -99,7 +99,7 @@
                         </ul>
                     </li>
 
-                    <!-- Accounts-->
+                    <!-- Accounts--> 
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#Accounts-menu">
                             <div class="pull-left"><i class="fas fa-money-bill-wave-alt"></i><span

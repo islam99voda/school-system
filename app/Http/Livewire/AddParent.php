@@ -15,16 +15,17 @@ class AddParent extends Component
 {
     use WithFileUploads; //uploadلازم اضمها لو هستخدم ال
 
-    public $catchError, $updateMode= false, $photos, $show_table = true, $Parent_id;
+    
+    public $catchError,$show_table,$updateMode=false,     $photos = true,    $Parent_id;
 
-    public $currentStep = 1, //اول ماتفتح الصفحة افتح ع الخطوة رقم 1
-        // Father_INPUTS
-        $Email, $Password,
-        $Name_Father, $Name_Father_en,
+    public $currentStep = 1, // اول ماتفتح الفورم افتح ع الخطوة رقم1 يعني هو دا الديفولت
+        // أي متغير في الفورم لازم اعرفه هنا
+        $Name_Father,$Email, $Password,
+        $Name_Father_en, $Religion_Father_id,
         $National_ID_Father, $Passport_ID_Father,
         $Phone_Father, $Job_Father, $Job_Father_en,
         $Nationality_Father_id, $Blood_Type_Father_id,
-        $Address_Father, $Religion_Father_id,
+        $Address_Father,
 
         // Mother_INPUTS
         $Name_Mother, $Name_Mother_en,
@@ -33,9 +34,44 @@ class AddParent extends Component
         $Nationality_Mother_id, $Blood_Type_Mother_id,
         $Address_Mother, $Religion_Mother_id;
         
+        public function render() //اول مايدخل الكلاس اللي احنا فيه دا 
+        {
+            return view('livewire.add-parent', [ //روح على صفحة قائمة أولياء الأمور
+                'Nationalities' => Nationalitie::all(), //وخد معاك الجنسيات
+                'Type_Bloods' => Type_Blood::all(),
+                'Religions' => Religion::all(),
+                'my_parents' => My_Parent::all(),
+            ]);
+        }
+        
+        public function showformadd(){ //اول مايدوس على زرار اضافة ولي أمر
+            $this->show_table = true; 
+        }
+
+
+        public function firstStepSubmit() //2لما ادوس التالي يدخلني ع الصفحة رقم 
+        {
+            $this->validate([ //فاليديشن inputsمتنفذهاش غير لما تعمل على كل ال
+                'Email' => 'required|unique:my__parents,Email,'.$this->id,
+                'Password' => 'required',
+                'Name_Father' => 'required',
+                'Name_Father_en' => 'required',
+                'Job_Father' => 'required',
+                'Job_Father_en' => 'required',
+                'National_ID_Father' => 'required|unique:my__parents,National_ID_Father,' . $this->id,
+                'Passport_ID_Father' => 'required|unique:my__parents,Passport_ID_Father,' . $this->id,
+                'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+                'Nationality_Father_id' => 'required',
+                'Blood_Type_Father_id' => 'required',
+                'Religion_Father_id' => 'required',
+                'Address_Father' => 'required',
+            ]);
+            $this->currentStep = 2; //  بدل ماهو 1 خليه 2 over ride اعمل 
+        }
+
 
         public function updated($propertyName)
-    {
+        {
         $this->validateOnly($propertyName, [
             'Email' => 'required|email',
             'National_ID_Father' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
@@ -45,41 +81,7 @@ class AddParent extends Component
             'Passport_ID_Mother' => 'min:10|max:10',
             'Phone_Mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
         ]);
-    }
-    
-    public function render()
-    {
-        return view('livewire.add-parent', [
-            'Nationalities' => Nationalitie::all(),
-            'Type_Bloods' => Type_Blood::all(),
-            'Religions' => Religion::all(),
-            'my_parents' => My_Parent::all(),
-        ]);
-    }
-
-    public function showformadd(){
-        $this->show_table = false;
-    }
-
-    public function firstStepSubmit() //2لما ادوس التالي يدخلني ع الصفحة رقم 
-    {
-        $this->validate([ //فاليديشن inputsمتنفذهاش غير لما تعمل على كل ال
-            'Email' => 'required|unique:my__parents,Email,'.$this->id,
-            'Password' => 'required',
-            'Name_Father' => 'required',
-            'Name_Father_en' => 'required',
-            'Job_Father' => 'required',
-            'Job_Father_en' => 'required',
-            'National_ID_Father' => 'required|unique:my__parents,National_ID_Father,' . $this->id,
-            'Passport_ID_Father' => 'required|unique:my__parents,Passport_ID_Father,' . $this->id,
-            'Phone_Father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'Nationality_Father_id' => 'required',
-            'Blood_Type_Father_id' => 'required',
-            'Religion_Father_id' => 'required',
-            'Address_Father' => 'required',
-        ]);
-        $this->currentStep = 2;
-    }
+        }
 
     //secondStepSubmit
     public function secondStepSubmit() //الخطوة التالته
@@ -102,7 +104,7 @@ class AddParent extends Component
     }
 
     public function submitForm(){
-        
+        try {
         $My_Parent = new My_Parent();
         // Father_INPUTS
         $My_Parent->Email = $this->Email;
@@ -141,21 +143,26 @@ class AddParent extends Component
             }
         }
         $this->successMessage = trans('messages.success');
-        $this->clearForm();
+        $this->clearForm(); //اللي كاتبها تحت methodهاتلي ال
         $this->currentStep = 1;
+        }
+        catch (\Exception $e) {
+            $this->catchError = $e->getMessage();
+        };
+        
     }
 
 
     public function firstStepSubmit_edit()
     {
         $this->updateMode = true; 
-        $this->currentStep = 2; //
+        $this->currentStep = 2; //روح ع الخطوة 2
     }
 
     public function secondStepSubmit_edit()
     {
         $this->updateMode = true; 
-        $this->currentStep = 3; 
+        $this->currentStep = 3; //روح ع الخطوة 3
     }
 
     public function submitForm_edit(){
@@ -174,7 +181,7 @@ class AddParent extends Component
 
     public function edit($id)
     {
-        $this->show_table = false; 
+        $this->show_table = true;  //افتح الفورم
         $this->updateMode = true;
         $My_Parent = My_Parent::where('id',$id)->first();
         $this->Parent_id = $id;

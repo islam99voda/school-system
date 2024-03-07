@@ -33,8 +33,8 @@ class StoreClassroom extends FormRequest
     public function messages()
     {
         return [
-            'Name.required' => trans('validation.required'),
-            'Name_class_en.required' => trans('validation.required'),
+            'List_Classes.*.Name.required' => trans('My_Classes_trans.class_ar_required'),
+            'List_Classes.*.Name_class_en.required' => trans('My_Classes_trans.class_en_required'),
         ];
     }
 }

@@ -1,6 +1,7 @@
-@if($currentStep != 2)
-    <div style="display: none" class="row setup-content" id="step-2">
-        @endif
+
+@if($currentStep != 2)<!--لو مش واقف ع الخطوة رقم 2 -->
+    <div style="display: none" class="row setup-content" id="step-2"> <!--متعرضش الفورم-->
+@endif
         <div class="col-xs-12">
             <div class="col-md-12">
                 <br>
@@ -111,7 +112,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
+                    <!--ارجع للخطوة لرقم 1-->
                 <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(1)">
                     {{trans('Parent_trans.Back')}}
                 </button>

@@ -24,10 +24,10 @@ class StoreGrades extends FormRequest
     public function messages()
     {
         return [
-            'Name.required' => trans('validation.required'),
-            'Name.unique' => trans('validation.unique'),
-            'Name_en.required' => trans('validation.required'),
-            'Name_en.unique' => trans('validation.unique'),
+            'Name.required' => trans('Grades_trans.grade_ar_required'),
+            'Name.unique' => trans('Grades_trans.grade_unique_ar'),
+            'Name_en.required' => trans('Grades_trans.grade_en_required'),
+            'Name_en.unique' => trans('Grades_trans.grade_unique_en'),
         ];
     }
 }

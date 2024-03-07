@@ -24,12 +24,12 @@ class GradeController extends Controller
 
     public function store(StoreGrades $request)
 {
-        //'exists' method to check if the grade with the given value already exists
+        //'exists' method to check if the grade already exists or not
         $existingGrade = Grade::where('Name->ar', $request->Name) //input ar
         ->orWhere('Name->en', $request->Name_en) //input en
         ->exists();
 
-        if ($existingGrade) {
+        if ($existingGrade) { //if the grade already exists
         return redirect()->back()->withErrors(trans('Grades_trans.exists'));
         }
         try {
@@ -38,7 +38,8 @@ class GradeController extends Controller
             $grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
             $grade->Notes = $request->Notes;
             $grade->save();
-            return redirect()->back()->with('success', 'Grade created successfully.');
+            toastr()->success(trans('messages.success'));
+          return redirect()->route('Grades.index');
         }
         catch (\Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -74,9 +75,10 @@ class GradeController extends Controller
         if($MyClass_id->count() == 0){ //لو ملقتوش أحذف عادي
   
             $Grades = Grade::findOrFail($request->id)->delete();
-            return redirect()->route('Grades.index');
-        }
+            toastr()->error(trans('messages.Delete'));
+            return redirect()->route('Grades.index');        }
         else{
+            toastr()->error(trans('Grades_trans.delete_Grade_Error'));
             return redirect()->route('Grades.index');
         }
     }

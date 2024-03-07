@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -23,7 +24,7 @@ Route::group([
 ], function () {
 
     // ==============================dashboard============================
-    Route::get('/', fn() => view('dashboard'));
+    Route::view('/', 'dashboard')->name('dashboard');
 
     // ==============================dashboard============================
     Route::namespace('Grades')->group(function () {

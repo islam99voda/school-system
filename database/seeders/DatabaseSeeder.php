@@ -7,7 +7,7 @@ use Database\Seeders\GenderTableSeeder;
 use Database\Seeders\religionTableSeeder;
 use Database\Seeders\NationalitiesTableSeeder;
 use Database\Seeders\SpecializationsTableSeeder;
-
+ 
 class DatabaseSeeder extends Seeder
 {
     public function run()

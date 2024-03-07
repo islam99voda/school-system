@@ -1,6 +1,7 @@
-@if($currentStep != 1)
-    <div style="display: none" class="row setup-content" id="step-1">
-        @endif
+
+@if($currentStep != 1)<!-- لو مش واقف ع الخطوة رقم 1-->
+    <div style="display: none" class="row setup-content" id="step-1"> <!--متعرضش الفورم-->
+@endif
         <div class="col-xs-12">
             <div class="col-md-12">
                 <br>
@@ -136,6 +137,7 @@
                             type="button">{{trans('Parent_trans.Next')}}
                     </button>
                 @else
+                <!--غير الخطوة لرقم 2-->
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit"
                             type="button">{{trans('Parent_trans.Next')}}
                     </button>

@@ -6,20 +6,20 @@
         </div>
     @endif
 
-    {{-- @if ($catchError)
-        <div class="alert alert-danger" id="success-danger">
-            <button type="button" class="close" data-dismiss="alert">x</button>
-            {{ $catchError }}
-        </div>
-    @endif --}}
-    @if($show_table)
-            @include('livewire.Parent_Table')
-        @else
+        @if ($catchError)
+            <div class="alert alert-danger" id="success-danger">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                {{ $catchError }}
+            </div>
+        @endif
+    @if(!$show_table) <!--لو مداسش على زرار اضافة ولي امر-->
+            @include('livewire.Parent_Table') <!--اعرضله جدول اولياء الأمور-->
+        @else <!--لو داس على زرار اضافة ولي امر افتح الفورم-->
             <div class="stepwizard">
                 <div class="stepwizard-row setup-panel">
                     <div class="stepwizard-step">
-                        <a href="#step-1" type="button"
-                           class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-success' }}">1</a>
+                        <a href="#step-1" type="button" 
+                           class="btn btn-circle {{ $currentStep != 1 ? 'btn-default' : 'btn-success' }}">1</a><!--لو مش واقف ع الخطوة الاولى شيل اللون الاخضر-->
                         <p>{{ trans('Parent_trans.Step1') }}</p>
                     </div>
                     <div class="stepwizard-step">
@@ -35,7 +35,6 @@
                     </div>
                 </div>
             </div>
-
     <!-- Include the form -->
     @include('livewire.Father_Form')
     @include('livewire.mother_Form')
@@ -54,11 +53,11 @@
 
                    <br>
                    
+                   <!--آخر خطوة, اضافة مرفقات-->
                    {{-- <input type="hidden" wire:model="Parent_id"> --}}
                    <h3 style="font-family: 'cairo', sans-serif;">هل أنت متأكد من حفظ البيانات ؟</h3>
-                   <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button"
-                           wire:click="back(2)">{{ trans('Parent_trans.Back') }}</button>
-                    
+                   <!--ارجع للخطوة لرقم 2-->
+                   <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(2)">{{ trans('Parent_trans.Back') }}</button>
                     @if($updateMode)
                         <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="submitForm_edit" type="button">{{trans('Parent_trans.Finish')}}</button>
                     @else

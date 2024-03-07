@@ -21,24 +21,10 @@ class ClassroomController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store(StoreClassroom $request)
     {
-
+        
         $List_Classes = $request->List_Classes;
 
         try {
@@ -100,13 +86,12 @@ class ClassroomController extends Controller
      */
     public function update(Request $request)
     {
-
+ 
         try {
 
             $Classrooms = Classroom::findOrFail($request->id);
 
             $Classrooms->update([
-
                 $Classrooms->Name_Class = ['ar' => $request->Name, 'en' => $request->Name_en],
                 $Classrooms->Grade_id = $request->Grade_id,
             ]);
@@ -124,18 +109,17 @@ class ClassroomController extends Controller
 
     public function destroy(Request $request)
     {
-
         $Classrooms = Classroom::findOrFail($request->id)->delete();
+        toastr()->error(trans('messages.Delete'));
         return redirect()->route('Classrooms.index');
-
     }
 
 
     public function delete_all(Request $request)
     {
-        $delete_all_id = explode(",", $request->delete_all_id);
+        $delete_all_id = explode(",", $request->delete_all_id); //conert all id to array
 
-        Classroom::whereIn('id', $delete_all_id)->Delete();
+        Classroom::whereIn('id', $delete_all_id)->Delete(); //delete them
         return redirect()->route('Classrooms.index');
     }
 
@@ -146,7 +130,6 @@ class ClassroomController extends Controller
         $Search = Classroom::select('*')->where('Grade_id','=',$request->Grade_id)->get();
         return view('pages.My_Classes.My_Classes',compact('Grades'))->withDetails($Search);
     }
-
 
 }
 
