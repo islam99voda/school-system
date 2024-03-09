@@ -10,13 +10,16 @@ use App\Http\Models\Type_Blood;
 use App\Http\Models\Nationalitie;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Models\ParentAttachment;
+use Illuminate\Support\Facades\Storage;
 
 class AddParent extends Component
 {
     use WithFileUploads; //uploadلازم اضمها لو هستخدم ال
 
     
-    public $catchError,$show_table,$updateMode=false,     $photos = true,    $Parent_id;
+    public $catchError,$show_table,$updateMode=false,    $Parent_id;
+    public $photos = [];
+    public $successMessage = [];
 
     public $currentStep = 1, // اول ماتفتح الفورم افتح ع الخطوة رقم1 يعني هو دا الديفولت
         // أي متغير في الفورم لازم اعرفه هنا
@@ -155,7 +158,7 @@ class AddParent extends Component
 
     public function firstStepSubmit_edit()
     {
-        $this->updateMode = true; 
+        $this->updateMode = true; //فعل التعديل
         $this->currentStep = 2; //روح ع الخطوة 2
     }
 
@@ -179,11 +182,11 @@ class AddParent extends Component
         return redirect()->to('/add_parent');
     }
 
-    public function edit($id)
+    public function edit($id) //اللي بيفتح فورم التعديل
     {
-        $this->show_table = true;  //افتح الفورم
-        $this->updateMode = true;
-        $My_Parent = My_Parent::where('id',$id)->first();
+        $this->updateMode = true;  //فعل وضع التعديل
+        $this->show_table = true;  //اخفي الجدول وافتح الفورم
+        $My_Parent = My_Parent::where('id',$id)->first(); //املى بيانات الفورم
         $this->Parent_id = $id;
         $this->Email = $My_Parent->Email;
         $this->Password = $My_Parent->Password;
@@ -243,9 +246,26 @@ class AddParent extends Component
     }
 
     public function delete($id){
-        My_Parent::findOrFail($id)->delete();
+
+        $parent = My_Parent::findOrFail($id);
+
+        $attachments = ParentAttachment::where('parent_id', $parent->id)->get();
+        
+        if ($attachments->isNotEmpty()) {
+            foreach ($attachments as $attachment) {
+                // Delete the attachment file from storage
+                Storage::disk('parent_attachments')->delete($attachment->file_name);
+            }
+            // Delete the attachment records from the database
+            ParentAttachment::where('parent_id', $parent->id)->delete();
+        }
+        // Delete the user
+        $parent->delete();
+    
         return redirect()->to('/add_parent');
     }
+
+    
     
     public function back($step)
     {

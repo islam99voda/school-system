@@ -18,7 +18,6 @@
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
-
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -31,6 +30,7 @@
 
                 <form method="post"  action="{{ route('Students.store') }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
+                    
                     <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{trans('Students_trans.personal_information')}}</h6><br>
                         <div class="row">
                             <div class="col-md-6">

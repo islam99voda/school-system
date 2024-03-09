@@ -11,7 +11,7 @@ use App\Http\Models\Type_Blood;
 use App\Http\Models\Nationalitie;
 use Illuminate\Support\Facades\Hash;
 
-class StudentRepository implements StudentRepositoryInterface{
+class StudentRepository implements StudentRepositoryInterface{ 
 
     public function Create_Student(){
         $data['my_classes'] = Grade::all();

@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Hash;
 class TeacherRepository implements TeacherRepositoryInterface{
 
     public function getAllTeachers(){
-        return Teacher::all();
+        return Teacher::all(); 
     }
-
+ 
     public function Getspecialization(){
         return Specialization::all();
     }
@@ -35,6 +35,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
                 $Teachers->Joining_Date = $request->Joining_Date;
                 $Teachers->Address = $request->Address;
                 $Teachers->save();
+                toastr()->success(trans('messages.success'));
                 return redirect()->route('Teachers.create');
             }
             catch (Exception $e) {
@@ -61,6 +62,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
             $Teachers->Joining_Date = $request->Joining_Date;
             $Teachers->Address = $request->Address;
             $Teachers->save();
+            toastr()->success(trans('messages.Update'));
             return redirect()->route('Teachers.index');
         }
         catch (Exception $e) {
@@ -72,6 +74,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
     public function DeleteTeachers($request)
     {
         Teacher::findOrFail($request->id)->delete();
+        toastr()->error(trans('messages.Delete'));
         return redirect()->route('Teachers.index');
     }
 

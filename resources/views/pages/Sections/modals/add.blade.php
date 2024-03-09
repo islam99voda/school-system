@@ -37,18 +37,18 @@ aria-hidden="true">
                        <option value="" selecteddisabled>{{ trans('Sections_trans.Select_Grade') }} </option>
                        <!--بتاع اسم المرحلة اللي اليوزر هيختارها idخزن في الكونسول ال-->
                        @foreach ($list_Grades as $list_Grade)
-                           <option value="{{ $list_Grade->id }}"> {{ $list_Grade->Name }} 
-                           </option>
+                           <option value="{{ $list_Grade->id }}"> {{ $list_Grade->Name }} </option>
                        @endforeach
                    </select>
                </div>
                <br>
+               <!--اسم الصف-->
                <div class="col">
                    <label for="inputName" class="control-label">{{ trans('Sections_trans.Name_Class') }}</label>
-                   <!--اسم الصف-->
                    <select name="Class_id" class="custom-select"> 
                    </select>
                </div><br>
+                <!--اسم المعلم-->
                <div class="col">
                    <label for="inputName" class="control-label">{{ trans('Sections_trans.Name_Teacher') }}</label>
                    <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">

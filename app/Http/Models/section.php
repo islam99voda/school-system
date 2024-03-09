@@ -25,6 +25,6 @@ class section extends Model
     // علاقة الاقسام مع المعلمين
     public function teachers() 
     {
-        return $this->belongsToMany('App\Http\Models\Teacher','teacher_section'); //teacher_sectionاللي اسمه bivit table لازم احط اسم ال
+        return $this->belongsToMany('App\Http\Models\Teacher','teacher_section'); //teacher_sectionاللي اسمه Pivot table لازم احط اسم ال
     }
 }

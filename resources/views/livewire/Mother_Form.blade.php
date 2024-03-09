@@ -117,11 +117,11 @@
                     {{trans('Parent_trans.Back')}}
                 </button>
                 
-                @if($updateMode)
+                @if($updateMode)<!--لو وضع التعديل متفعل يعني بيعدل-->
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="secondStepSubmit_edit"
                             type="button">{{trans('Parent_trans.Next')}}
                     </button>
-                @else
+                @else<!--لو بيضيف-->
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="button"
                             wire:click="secondStepSubmit">{{trans('Parent_trans.Next')}}</button>
                 @endif

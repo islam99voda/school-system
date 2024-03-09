@@ -132,11 +132,11 @@
                     @enderror
                 </div>
 
-                @if($updateMode) 
+                @if($updateMode) <!--لو وضع التعديل متفعل يعني بيعدل-->
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit_edit"
                             type="button">{{trans('Parent_trans.Next')}}
                     </button>
-                @else
+                @else<!--لو بيضيف-->
                 <!--غير الخطوة لرقم 2-->
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit"
                             type="button">{{trans('Parent_trans.Next')}}

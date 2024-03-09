@@ -41,8 +41,8 @@
 
     <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
         @if ($currentStep != 3)
-       <div style="display: none" class="row setup-content" id="step-3">
-           @endif
+            <div style="display: none" class="row setup-content" id="step-3">
+        @endif
            
            <div class="col-xs-12">
                <div class="col-md-12"><br>
