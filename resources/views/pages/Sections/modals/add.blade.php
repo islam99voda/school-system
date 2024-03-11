@@ -32,10 +32,8 @@ aria-hidden="true">
                <div class="col">
                     <!--اسم المرحلة-->
                    <label for="inputName" class="control-label">{{ trans('Sections_trans.Name_Grade') }}</label>
-                   <select name="Grade_id" class="custom-select" onchange="console.log($(this).val())"> <!--خزن في الكونسول-->
-                       <!--حدد المرحلة-->
-                       <option value="" selecteddisabled>{{ trans('Sections_trans.Select_Grade') }} </option>
-                       <!--بتاع اسم المرحلة اللي اليوزر هيختارها idخزن في الكونسول ال-->
+                   <select name="Grade_id" class="custom-select" onchange="console.log($(this).val())"> <!--ajaxبتاع اسم المرحلة اللي اليوزر هختارها عشان هستدعيه بال idخزن في الكونسول ال-->
+                       <option value="" selected="true" disabled="disabled">{{ trans('Sections_trans.Select_Grade') }} </option><!--حدد المرحلة-->
                        @foreach ($list_Grades as $list_Grade)
                            <option value="{{ $list_Grade->id }}"> {{ $list_Grade->Name }} </option>
                        @endforeach
@@ -45,7 +43,8 @@ aria-hidden="true">
                <!--اسم الصف-->
                <div class="col">
                    <label for="inputName" class="control-label">{{ trans('Sections_trans.Name_Class') }}</label>
-                   <select name="Class_id" class="custom-select"> 
+                   <select name="Class_id" class="custom-select"> <!--ajaxهستدعيه بال-->
+                        <!--optionعشان املى ال-->
                    </select>
                </div><br>
                 <!--اسم المعلم-->

@@ -22,7 +22,7 @@ class section extends Model
         return $this->belongsTo('App\Http\Models\Classroom', 'Class_id');
     }
 
-    // علاقة الاقسام مع المعلمين
+    // لعلاقة الاقسام مع المعلمين pivot tableجدول ال
     public function teachers() 
     {
         return $this->belongsToMany('App\Http\Models\Teacher','teacher_section'); //teacher_sectionاللي اسمه Pivot table لازم احط اسم ال

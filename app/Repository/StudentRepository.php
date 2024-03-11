@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentRepository implements StudentRepositoryInterface{ 
 
+    public function Get_Student()
+    {
+        $students = Student::all();
+        return view('pages.Students.index',compact('students'));
+    }
+
+
     public function Create_Student(){
         $data['my_classes'] = Grade::all();
         $data['parents'] = My_Parent::all();
@@ -62,10 +69,6 @@ class StudentRepository implements StudentRepositoryInterface{
     }
 
 
-    public function Get_Student()
-    {
-        $students = Student::all();
-        return view('pages.Students.index',compact('students'));
-    }
+    
 
 }

@@ -43,8 +43,8 @@ class SectionController extends Controller
             $Sections->Class_id = $request->Class_id;
             $Sections->Status = 1; //عشان القسم يتفعل اول مايتضاف defult هخزن فيها 1 ك
             $Sections->save();    
-            $Sections->teachers()->attach($request->teacher_id);
-            return redirect()->route('Sections.index');
+            $Sections->teachers()->attach($request->teacher_id); //pivot tableالسيشكن والمدرسين اللي اختارهم وخزنهم في ال idخد 
+            return redirect()->route('Sections.index'); 
         }
       
         catch (\Exception $e){
