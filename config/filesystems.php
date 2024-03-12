@@ -42,6 +42,12 @@ return [
     */
 
     'disks' => [
+        'upload_attachments' => [ //this is the name of the disk
+            'driver' => 'local',
+            'root' => storage_path('/'), //this is the public folder
+            'url' => env('APP_URL').'/storage', //this is the storage folder 
+            'visibility' => 'public', //this is the visibility of the file 
+        ],
 
         'local' => [
             'driver' => 'local',
@@ -52,6 +58,7 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/parent_attachments'),
         ],
+
 
         'public' => [
             'driver' => 'local',

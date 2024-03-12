@@ -204,7 +204,6 @@
                             $('select[name="Classroom_id"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
                             $('select[name="Classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
-
                     },
                 });
             }
