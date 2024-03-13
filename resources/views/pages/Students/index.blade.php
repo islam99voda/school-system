@@ -23,7 +23,7 @@
                             <div class="card-body">
                                 <a href="{{route('Students.create')}}" class="btn btn-success btn-sm" role="button"
                                    aria-pressed="true">{{trans('main_trans.add_student')}}</a><br><br>
-                                <div class="table-responsive">
+                                <div class="table-respon    sive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
                                            style="text-align: center">

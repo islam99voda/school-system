@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Students;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreStudentsRequest;
 use App\Repository\StudentRepositoryInterface;
 
@@ -42,10 +43,11 @@ class StudentController extends Controller
 
 
 
-    public function show($id)
-    {
-        //
-    }
+    public function show($id){
+
+        return $this->Student->Show_Student($id);
+   
+       }
 
     
 
@@ -80,4 +82,28 @@ class StudentController extends Controller
     {
         return $this->Student->Get_Sections($id);
     }
+
+    public function Upload_attachment(Request $request)
+    {
+        return $this->Student->Upload_attachment($request);
+    }
+
+    public function Download_attachment($studentsname,$filename)
+    {
+        return $this->Student->Download_attachment($studentsname,$filename);
+    }
+
+    public function Delete_attachment(Request $request)
+    {
+        return $this->Student->Delete_attachment($request);
+    }
+
+
+    public function Open_attachment($studentsname, $filename)
+    {
+        return $this->Student->Open_attachment($studentsname, $filename);
+    }
+    
+
+    
 }

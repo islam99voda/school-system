@@ -18,6 +18,17 @@ interface StudentRepositoryInterface{
 
      //Store_Student
     public function Store_Student($request);
+
+    public function Show_Student($id);
+
+    public function Upload_attachment($request);
+    
+    public function Download_attachment($studentsname,$filename);
+
+    //Delete_attachment
+    public function Delete_attachment($request);
+
+    public function Open_attachment($studentsname, $filename);
 }
 
 

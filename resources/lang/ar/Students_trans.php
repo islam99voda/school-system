@@ -31,6 +31,8 @@ return [
     'created_at' => 'تاريخ الاضافة',
     'Download' => 'تحميل',
     'delete' => 'حذف',
+    'open' => 'فتح',
+    
 
 
 
