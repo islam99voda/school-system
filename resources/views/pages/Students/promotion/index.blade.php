@@ -73,10 +73,10 @@
                         </div>
                         <br><h6 style="color: red;font-family: Cairo">{{trans('Grades_trans.new_grades')}}</h6><br>
                         <div class="form-row">
-                            <!-- المراحل الدراسية القديمة-->
+                            <!-- المراحل الدراسية الجديدة-->
                             <div class="form-group col">
                                 <label for="inputState">{{ trans('Students_trans.Grade') }}</label>
-                                <select class="custom-select mr-sm-2" name="Grade_id" >
+                                <select class="custom-select mr-sm-2" name="Grade_id_new" >
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                     @foreach($Grades as $Grade)
                                         <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
@@ -116,6 +116,7 @@
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
                                     <div class="table-responsive">
+                                        <h6 style="color: red;font-family: Cairo">طلاب المراحل والصفوف والاقسام القديمة المراد ترقيتهم</h6><br> 
                                         <table id="students-table" class="table table-hover table-sm table-bordered p-0"
                                             data-page-length="50" style="text-align: center">
                                             <thead>

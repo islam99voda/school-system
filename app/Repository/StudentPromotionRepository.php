@@ -27,6 +27,7 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
 
     public function store($request)
     {
+        dd($request);
         DB::beginTransaction();
 
         try {
