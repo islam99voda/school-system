@@ -16,17 +16,19 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('from_grade');
-            $table->unsignedBigInteger('from_Classroom');
-            $table->unsignedBigInteger('from_section');
-            $table->unsignedBigInteger('to_grade');
-            $table->unsignedBigInteger('to_Classroom');
-            $table->unsignedBigInteger('to_section');
-            $table->string('academic_year');
+            $table->unsignedBigInteger('from_grade'); //جي من انهي مرحلة
+            $table->unsignedBigInteger('from_Classroom'); //جي من انهي صف
+            $table->unsignedBigInteger('from_section'); //جي من انهي قسم
+
+            $table->unsignedBigInteger('to_grade'); //هيروح انهي مرحلة
+            $table->unsignedBigInteger('to_Classroom'); //هيروح انهي صف
+            $table->unsignedBigInteger('to_section'); //هيروح انهي قسم
+            $table->string('academic_year'); 
             $table->string('academic_year_new');
             $table->timestamps();
         });
 
+        //add foreign key to table promotion 
         Schema::table('promotions', function (Blueprint $table) {
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('from_grade')->references('id')->on('Grades')->onDelete('cascade');

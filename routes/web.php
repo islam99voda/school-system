@@ -42,6 +42,8 @@ Route::group([
     Route::namespace('Sections')->group(function () {
         Route::resource('Sections', 'SectionController');
         Route::get('/classes/{id}', 'SectionController@getclasses');
+        Route::get('/Get_students_table/{id}', 'SectionController@Get_students_table');
+
     });
 
     // ==============================parents============================
@@ -61,25 +63,7 @@ Route::group([
         Route::get('Download_attachment/{studentsname}/{filename}', 'StudentController@Download_attachment')->name('Download_attachment');
         Route::post('Delete_attachment', 'StudentController@Delete_attachment')->name('Delete_attachment');
         Route::get('Open_attachment/{studentsname}/{filename}', 'StudentController@Open_attachment')->name('Open_attachment');
+        Route::resource('Promotion', 'PromotionController');
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

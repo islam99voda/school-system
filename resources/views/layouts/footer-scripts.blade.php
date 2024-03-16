@@ -64,7 +64,7 @@
     }
 </script>
 
-
+<!--جلب الصفوف الدراسية-->
 <script>
     $(document).ready(function () {
         $('select[name="Grade_id"]').on('change', function () {
@@ -80,11 +80,9 @@
                         $.each(data, function (key, value) {
                             $('select[name="Classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
-
                     },
                 });
             }
-
             else {
                 console.log('AJAX load did not work');
             }
@@ -92,7 +90,75 @@
     });
 </script>
 
+<!--جلب طلاب جدول المراحل الدراسية والصفوف-->
+<script>
+    $(document).ready(function () {
+        $('select[name="Grade_id"]').on('change', function () {
+            var Grade_id = $(this).val();
+            var languagePreference = window.location.pathname.split('/')[1]; // Extract language from URL
+            if (Grade_id) {
+                $.ajax({
+                    url: "{{ url('Get_students_table') }}/" + Grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#students-table-body').empty(); // Clear existing table body
+                        var count = 0; // Initialize count variable
+                        $.each(data, function (key, student) {
+                            count++; // Increment count 
+                            // Get the student name based on the language in url
+                            $('#students-table-body').append(
+                            '<tr>' +
+                                '<td>' + count + '</td>' + 
+                                '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
+                                '<td>' + student.email + '</td>' +
+                                '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
+                                '<td>' + (languagePreference === 'en' ? student.grade.Name.en : student.grade.Name.ar) + '</td>' +
+                                '<td>' + (languagePreference === 'en' ? student.classroom.Name_Class.en : student.classroom.Name_Class.ar) + '</td>' +
+                                '<td>' + (languagePreference === 'en' ? student.section.Name_Section.en : student.section.Name_Section.ar) + '</td>' +
+                            '</tr>'
+                            );
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
 
+
+<!--جلب الصفوف الدراسية-->
+<script>
+    $(document).ready(function () {
+        $('select[name="Grade_id"]').on('change', function () {
+            var Grade_id = $(this).val();
+            if (Grade_id) {
+                $.ajax({
+                    url: "{{ URL::to('Get_classrooms') }}/" + Grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="Classroom_id"]').empty();
+                        $('select[name="Classroom_id"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="Classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            }
+            else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
+
+<!--جلب القسم-->
 <script>
     $(document).ready(function () {
         $('select[name="Classroom_id"]').on('change', function () {
@@ -108,11 +174,9 @@
                         $.each(data, function (key, value) {
                             $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
                         });
-
                     },
                 });
             }
-
             else {
                 console.log('AJAX load did not work');
             }
@@ -123,7 +187,7 @@
 
 
 
-
+<!--جلب الصفوف الدراسية الجديدة-->
 <script>
     $(document).ready(function () {
         $('select[name="Grade_id_new"]').on('change', function () {
@@ -151,7 +215,7 @@
     });
 </script>
 
-
+<!--جلب الاقسام الدراسية الجديدة-->
 <script>
     $(document).ready(function () {
         $('select[name="Classroom_id_new"]').on('change', function () {

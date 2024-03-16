@@ -23,6 +23,8 @@ return [
     'grade_unique_ar'=>'this grade in Arabic already exists ',
     'grade_unique_en'=>'this grade in English already exists ',
     'Delete'=>'Delete',
+    'old_grades'=>'Old Grades',
+    'new_grades'=>'New Grades',
     'Close' => 'Close',
 
 ];

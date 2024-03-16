@@ -7,6 +7,7 @@ use App\Http\Models\section;
 use App\Http\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Models\Classroom;
+use App\Http\Models\Student;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreSections;
 
@@ -106,4 +107,13 @@ class SectionController extends Controller
         $list_classes = Classroom::where("Grade_id", $id)->pluck("Name_Class", "id");
         return $list_classes;
     }
+
+    public function Get_students_table($id)
+    {
+      $students = Student::with('gender','grade','classroom','section')
+      ->where("Grade_id", $id)
+      ->get(['id', 'name', 'email', 'gender_id', 'Grade_id', 'Classroom_id', 'section_id']);
+      return response()->json($students); // Return students as JSON response 
+    }
+
 }
