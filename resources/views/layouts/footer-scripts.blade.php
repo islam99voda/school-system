@@ -89,17 +89,24 @@
         });
     });
 </script>
-
-<!--جلب طلاب جدول المراحل الدراسية والصفوف-->
 <script>
     $(document).ready(function () {
-        $('select[name="Grade_id"]').on('change', function () {
-            var Grade_id = $(this).val();
+        $('select[name="Grade_id"], select[name="Classroom_id"], select[name="section_id"]').on('change', function () {
+            var Grade_id = $('select[name="Grade_id"]').val();
+            var Classroom_id = $('select[name="Classroom_id"]').val();
+            var section_id = $('select[name="section_id"]').val();
+            
             var languagePreference = window.location.pathname.split('/')[1]; // Extract language from URL
-            if (Grade_id) {
+            
+            if (Grade_id && Classroom_id && section_id) {
                 $.ajax({
-                    url: "{{ url('Get_students_table') }}/" + Grade_id,
+                    url: "{{ url('Get_students_table') }}/" + Grade_id + '/' + Classroom_id + '/' + section_id,
                     type: "GET",
+                    data: {
+                        Grade_id: Grade_id,
+                        Classroom_id: Classroom_id,
+                        section_id: section_id,
+                    },
                     dataType: "json",
                     success: function (data) {
                         $('#students-table-body').empty(); // Clear existing table body
@@ -108,15 +115,15 @@
                             count++; // Increment count 
                             // Get the student name based on the language in url
                             $('#students-table-body').append(
-                            '<tr>' +
-                                '<td>' + count + '</td>' + 
-                                '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
-                                '<td>' + student.email + '</td>' +
-                                '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
-                                '<td>' + (languagePreference === 'en' ? student.grade.Name.en : student.grade.Name.ar) + '</td>' +
-                                '<td>' + (languagePreference === 'en' ? student.classroom.Name_Class.en : student.classroom.Name_Class.ar) + '</td>' +
-                                '<td>' + (languagePreference === 'en' ? student.section.Name_Section.en : student.section.Name_Section.ar) + '</td>' +
-                            '</tr>'
+                                '<tr>' +
+                                    '<td>' + count + '</td>' + 
+                                    '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
+                                    '<td>' + student.email + '</td>' +
+                                    '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
+                                    '<td>' + (languagePreference === 'en' ? student.grade.Name.en : student.grade.Name.ar) + '</td>' +
+                                    '<td>' + (languagePreference === 'en' ? student.classroom.Name_Class.en : student.classroom.Name_Class.ar) + '</td>' +
+                                    '<td>' + (languagePreference === 'en' ? student.section.Name_Section.en : student.section.Name_Section.ar) + '</td>' +
+                                '</tr>'
                             );
                         });
                     },
@@ -125,11 +132,13 @@
                     }
                 });
             } else {
-                console.log('AJAX load did not work');
+                console.log('Please select all required fields');
             }
         });
     });
 </script>
+
+
 
 
 <!--جلب الصفوف الدراسية-->

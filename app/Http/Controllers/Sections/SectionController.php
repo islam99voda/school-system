@@ -108,12 +108,16 @@ class SectionController extends Controller
         return $list_classes;
     }
 
-    public function Get_students_table($id)
+    public function Get_students_table($Grade_id, $Classroom_id, $section_id)
     {
-      $students = Student::with('gender','grade','classroom','section')
-      ->where("Grade_id", $id)
-      ->get(['id', 'name', 'email', 'gender_id', 'Grade_id', 'Classroom_id', 'section_id']);
-      return response()->json($students); // Return students as JSON response 
+        $students = Student::with('gender', 'grade', 'classroom', 'section')
+            ->where("Grade_id", $Grade_id)
+            ->where("Classroom_id", $Classroom_id)
+            ->where("section_id", $section_id)
+            ->get(['id', 'name', 'email', 'gender_id', 'Grade_id', 'Classroom_id', 'section_id']);
+    
+        return response()->json($students);
     }
+    
 
 }

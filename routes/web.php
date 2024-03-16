@@ -42,7 +42,7 @@ Route::group([
     Route::namespace('Sections')->group(function () {
         Route::resource('Sections', 'SectionController');
         Route::get('/classes/{id}', 'SectionController@getclasses');
-        Route::get('/Get_students_table/{id}', 'SectionController@Get_students_table');
+        Route::get('/Get_students_table/{Grade_id}/{Classroom_id}/{section_id}', 'SectionController@Get_students_table');
 
     });
 
