@@ -27,87 +27,90 @@
                         </div>
                     @endif 
                         <h6 style="color: red;font-family: Cairo">{{trans('Grades_trans.old_grades')}}</h6><br> 
-                    <form method="post" action="">
-                        @csrf
-                        <!-- المراحل الدراسية القديمة-->
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="inputState">{{trans('Students_trans.Grade')}}</label>
-                                <select class="custom-select mr-sm-2" name="Grade_id" required>
-                                    <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
-                                    @foreach($Grades as $Grade)
-                                        <option value="{{$Grade->id}}">{{$Grade->Name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <!-- الصفوف الدراسية القديمة -->
-                            <div class="form-group col">
-                                <label for="Classroom_id">{{trans('Students_trans.classrooms')}} : <span
-                                        class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="Classroom_id" required>
-
-                                </select>
-                            </div>
-                            <!--القسم الدراسي القديم-->
-                            <div class="form-group col">
-                                <label for="section_id">{{trans('Students_trans.section')}} : </label>
-                                <select class="custom-select mr-sm-2" name="section_id" required>
-
-                                </select>
-                            </div>
-                            <!--السنة الدراسية-->
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="academic_year">{{trans('Students_trans.academic_year')}} : <span class="text-danger">*</span></label>
-                                    <select class="custom-select mr-sm-2" name="academic_year">
+                        <form method="post" action="{{ route('Promotion.store') }}">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="inputState">{{trans('Students_trans.Grade')}}</label>
+                                    <select class="custom-select mr-sm-2" name="Grade_id" required>
                                         <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
-                                        @php
-                                            $current_year = date("Y");
-                                        @endphp
-                                        @for($year=$current_year; $year<=$current_year +1 ;$year++)
-                                            <option value="{{ $year}}">{{ $year }}</option>
-                                        @endfor
+                                        @foreach($Grades as $Grade)
+                                            <option value="{{$Grade->id}}">{{$Grade->Name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-                        <br><h6 style="color: red;font-family: Cairo">{{trans('Grades_trans.new_grades')}}</h6><br>
-                        <div class="form-row">
-                            <!-- المراحل الدراسية الجديدة-->
-                            <div class="form-group col">
-                                <label for="inputState">{{ trans('Students_trans.Grade') }}</label>
-                                <select class="custom-select mr-sm-2" name="Grade_id_new" >
-                                    <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
-                                    @foreach($Grades as $Grade)
-                                        <option value="{{ $Grade->id }}">{{ $Grade->Name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <!-- الصفوف الدراسية القديمة -->
-                            <div class="form-group col">
-                                <label for="Classroom_id">{{ trans('Students_trans.classrooms') }}: <span class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="Classroom_id_new" >
-
-                                </select>
-                            </div>
-                            <!--السنة الدراسية-->
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="academic_year">{{trans('Students_trans.academic_year')}} : <span class="text-danger">*</span></label>
-                                    <select class="custom-select mr-sm-2" name="academic_year_new">
-                                        <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
-                                        @php
-                                            $current_year = date("Y");
-                                        @endphp
-                                        @for($year=$current_year; $year<=$current_year +1 ;$year++)
-                                            <option value="{{ $year}}">{{ $year }}</option>
-                                        @endfor
+                                <div class="form-group col">
+                                    <label for="Classroom_id">{{trans('Students_trans.classrooms')}} : <span
+                                            class="text-danger">*</span></label>
+                                    <select class="custom-select mr-sm-2" name="Classroom_id" required>
+    
                                     </select>
                                 </div>
+    
+                                <div class="form-group col">
+                                    <label for="section_id">{{trans('Students_trans.section')}} : </label>
+                                    <select class="custom-select mr-sm-2" name="section_id" required>
+    
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="academic_year">{{trans('Students_trans.academic_year')}} : <span class="text-danger">*</span></label>
+                                        <select class="custom-select mr-sm-2" name="academic_year">
+                                            <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
+                                            @php
+                                                $current_year = date("Y");
+                                            @endphp
+                                            @for($year=$current_year; $year<=$current_year +1 ;$year++)
+                                                <option value="{{ $year}}">{{ $year }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">تاكيد</button>
-                    </form>
+                            <br><h6 style="color: red;font-family: Cairo">المرحلة الدراسية الجديدة</h6><br>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="inputState">{{trans('Students_trans.Grade')}}</label>
+                                    <select class="custom-select mr-sm-2" name="Grade_id_new" >
+                                        <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
+                                        @foreach($Grades as $Grade)
+                                            <option value="{{$Grade->id}}">{{$Grade->Name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label for="Classroom_id">{{trans('Students_trans.classrooms')}}: <span
+                                            class="text-danger">*</span></label>
+                                    <select class="custom-select mr-sm-2" name="Classroom_id_new" >
+    
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label for="section_id">:{{trans('Students_trans.section')}} </label>
+                                    <select class="custom-select mr-sm-2" name="section_id_new" >
+    
+                                    </select>
+                                </div>
+    
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="academic_year">{{trans('Students_trans.academic_year')}} : <span class="text-danger">*</span></label>
+                                        <select class="custom-select mr-sm-2" name="academic_year_new">
+                                            <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
+                                            @php
+                                                $current_year = date("Y");
+                                            @endphp
+                                            @for($year=$current_year; $year<=$current_year +1 ;$year++)
+                                                <option value="{{ $year}}">{{ $year }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">تاكيد</button>
+                        </form>
                 </div>
             </div>
         </div>
@@ -116,7 +119,7 @@
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <h6 style="color: red;font-family: Cairo">طلاب المراحل والصفوف والاقسام القديمة المراد ترقيتهم</h6><br> 
+                                        <h6 style="color: red;font-family: Cairo">طلاب المراحل والصفوف  القديمة</h6><br> 
                                         <table id="students-table" class="table table-hover table-sm table-bordered p-0"
                                             data-page-length="50" style="text-align: center">
                                             <thead>
@@ -127,7 +130,6 @@
                                                     <th>{{trans('Students_trans.gender')}}</th>
                                                     <th>{{trans('Students_trans.Grade')}}</th>
                                                     <th>{{trans('Students_trans.classrooms')}}</th>
-                                                    <th>{{trans('Students_trans.section')}}</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="students-table-body">

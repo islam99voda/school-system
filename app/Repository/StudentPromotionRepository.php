@@ -27,23 +27,21 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
 
     public function store($request)
     {
-        dd($request);
-        DB::beginTransaction();
-
         try {
-            //المراحل الدراسية القديمة 
-            $students = Student::
+            $students = student::
             where('Grade_id',$request->Grade_id)
             ->where('Classroom_id',$request->Classroom_id)
             ->where('section_id',$request->section_id)
             ->where('academic_year',$request->academic_year)
             ->get();
-            if($students->count() < 1){
-                return redirect()->back()->with('error_promotions', __('لاتوجد بيانات في جدول الطلاب'));
-            }
 
+            if($students->count() < 1){
+                return redirect()->back()->with('error_promotions', __('لا يوجد طلا بهذه البيانات'));
+            }
+            else{
             // update in table student
             foreach ($students as $student){
+
                 $ids = explode(',',$student->id);
                 student::whereIn('id', $ids)
                     ->update([
@@ -52,24 +50,23 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
                         'section_id'=>$request->section_id_new,
                         'academic_year'=>$request->academic_year_new,
                     ]);
-
-                // insert in promotions table 
-                Promotion::updateOrCreate([
+                // insert in to promotions
+                Promotion::updateOrCreate([ //بتمنع تكرار العملية
                     'student_id'=>$student->id,
                     'from_grade'=>$request->Grade_id,
                     'from_Classroom'=>$request->Classroom_id,
                     'from_section'=>$request->section_id,
-                    'academic_year'=>$request->academic_year,
                     'to_grade'=>$request->Grade_id_new,
                     'to_Classroom'=>$request->Classroom_id_new,
                     'to_section'=>$request->section_id_new,
+                    'academic_year'=>$request->academic_year,
                     'academic_year_new'=>$request->academic_year_new,
                 ]);
+
             }
-            DB::commit();
             toastr()->success(trans('messages.success'));
             return redirect()->back();
-
+        }
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
