@@ -114,10 +114,10 @@ class SectionController extends Controller
             ->where("Grade_id", $Grade_id)
             ->where("Classroom_id", $Classroom_id)
             ->where("section_id", $section_id)
-            ->get(['id', 'name', 'email', 'gender_id', 'Grade_id', 'Classroom_id', 'section_id']);
-    
+            ->get(['id', 'name', 'email', 'gender_id', 'Grade_id', 'Classroom_id', 'section_id', 'academic_year']); // Include academic_year
         return response()->json($students);
     }
+    
     
 
 }

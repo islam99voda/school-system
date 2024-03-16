@@ -117,7 +117,7 @@
                             $('#students-table-body').append(
                                 '<tr>' +
                                     '<td>' + count + '</td>' + 
-                                    '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
+                                    '<td>' + (languagePreference === 'en' ? student.name.en : student.name.ar) + '</td>' +
                                     '<td>' + student.email + '</td>' +
                                     '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
                                     '<td>' + (languagePreference === 'en' ? student.grade.Name.en : student.grade.Name.ar) + '</td>' +
