@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    
 @section('title')
     {{trans('Students_trans.Student_Edit')}}
 @stop

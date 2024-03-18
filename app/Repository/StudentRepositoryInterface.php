@@ -10,6 +10,9 @@ interface StudentRepositoryInterface{
     // Get Add Form Student
     public function Create_Student();
      
+     // Edit_Student
+    public function Edit_Student($id);
+
      // Get classrooms
      public function Get_classrooms($id);
 
@@ -20,6 +23,12 @@ interface StudentRepositoryInterface{
     public function Store_Student($request);
 
     public function Show_Student($id);
+    
+    //Update_Student
+    public function Update_Student($request);
+
+    //Delete_Student
+    public function Delete_Student($request);
 
     public function Upload_attachment($request);
     

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'personal_information' => 'personal information',
     'name' => 'Name',
     'name_ar' => 'name_ar',
@@ -28,9 +27,9 @@ return [
     'Delete_attachment' => 'Delete_attachment',
     'Delete_attachment_tilte' => 'Are you sure to delete the attachment?',
     'filename' => 'filename',
+    'Student_Edit' => 'update student information',
     'created_at' => 'created_at',
     'Download' => 'Download',
     'delete' => 'Delete',
     'open' => 'open',
-
 ];

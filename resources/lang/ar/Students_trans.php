@@ -28,6 +28,7 @@ return [
     'Delete_attachment' => 'حذف مرفق',
     'Delete_attachment_tilte' => 'هل انت متأكد من حذف المرفق ؟',
     'filename' => 'اسم الملف',
+    'Student_Edit' => 'تعديل بيانات الطالب',
     'created_at' => 'تاريخ الاضافة',
     'Download' => 'تحميل',
     'delete' => 'حذف',
