@@ -64,7 +64,31 @@
     }
 </script>
 
-
+<!--جلب الصفوف الدراسية-->
+<script>
+    $(document).ready(function () {
+        $('select[name="Grade_id"]').on('change', function () {
+            var Grade_id = $(this).val();
+            if (Grade_id) {
+                $.ajax({
+                    url: "{{ URL::to('Get_classrooms') }}/" + Grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="Classroom_id"]').empty();
+                        $('select[name="Classroom_id"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="Classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            }
+            else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
 <script>
     $(document).ready(function () {
         $('select[name="Grade_id"], select[name="Classroom_id"], select[name="section_id"]').on('change', function () {
@@ -114,31 +138,7 @@
     });
 </script>
 
-<!--جلب الصفوف الدراسية-->
-<script>
-    $(document).ready(function () {
-        $('select[name="Grade_id"]').on('change', function () {
-            var Grade_id = $(this).val();
-            if (Grade_id) {
-                $.ajax({
-                    url: "{{ URL::to('Get_classrooms') }}/" + Grade_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="Classroom_id"]').empty();
-                        $('select[name="Classroom_id"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
-                        $.each(data, function (key, value) {
-                            $('select[name="Classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                });
-            }
-            else {
-                console.log('AJAX load did not work');
-            }
-        });
-    });
-</script>
+
 
 <!--جلب القسم-->
 <script>

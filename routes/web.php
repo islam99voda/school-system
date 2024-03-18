@@ -64,6 +64,10 @@ Route::group([
         Route::post('Delete_attachment', 'StudentController@Delete_attachment')->name('Delete_attachment');
         Route::get('Open_attachment/{studentsname}/{filename}', 'StudentController@Open_attachment')->name('Open_attachment');
         Route::resource('Promotion', 'PromotionController');
+        Route::resource('Graduated', 'GraduatedController');
+        Route::resource('Fees', 'FeesController');
+        Route::resource('Fees_Invoices', 'FeesInvoicesController');
+
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,9 +5,11 @@ namespace App\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
+    use SoftDeletes;
     use HasTranslations;
     public $translatable = ['name'];
     protected $guarded =[];

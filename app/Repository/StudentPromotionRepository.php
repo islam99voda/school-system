@@ -36,7 +36,7 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
             ->get();
 
             if($students->count() < 1){
-                return redirect()->back()->with('error_promotions', __('لا يوجد طلا بهذه البيانات'));
+                return redirect()->back()->with('error_promotions', __('لا يوجد طلاب بهذه البيانات'));
             }
             else{
             // update in table student
@@ -79,7 +79,6 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
         DB::beginTransaction();
 
         try {
-
             // التراجع عن الكل
             if($request->page_id ==1){
 
@@ -95,19 +94,14 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
                  'section_id'=> $Promotion->from_section,
                  'academic_year'=>$Promotion->academic_year,
                ]);
-
                  //حذف جدول الترقيات
                  Promotion::truncate();
-
              }
                 DB::commit();
                 toastr()->error(trans('messages.Delete'));
                 return redirect()->back();
-
             }
-
-            else{
-
+            else{  
                 $Promotion = Promotion::findorfail($request->id);
                 student::where('id', $Promotion->student_id)
                     ->update([
@@ -116,15 +110,11 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
                         'section_id'=> $Promotion->from_section,
                         'academic_year'=>$Promotion->academic_year,
                     ]);
-
-
                 Promotion::destroy($request->id);
                 DB::commit();
                 toastr()->error(trans('messages.Delete'));
                 return redirect()->back();
-
             }
-
         }
 
         catch (\Exception $e) {
