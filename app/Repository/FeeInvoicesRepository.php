@@ -21,11 +21,11 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
         return view('pages.Fees_Invoices.index',compact('Fee_invoices','Grades'));
     }
 
-    public function show($id)
+    public function show( $id)
     {
-        $student = Student::findorfail($id);
-        $fees = Fee::where('Classroom_id',$student->Classroom_id)->get();
-        return view('pages.Fees_Invoices.add',compact('student','fees'));
+        $student = Student::findorfail($id); //هات الطالب اللي اختاره 
+        $fees = Fee::where('Classroom_id',$student->Classroom_id)->get(); //لما صف الطالب يساوي الصف اللي في جدول الفواتير هات بيانات الرسوم
+        return view('pages.Fees_Invoices.add',compact('student','fees')); //الطالب وبيانات الصف بتاعه id هيروح معاه
     }
 
     public function edit($id)
@@ -35,40 +35,38 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
         return view('pages.Fees_Invoices.edit',compact('fee_invoices','fees'));
     }
 
+    
     public function store($request)
     {
         $List_Fees = $request->List_Fees;
-
+    
         DB::beginTransaction();
-
+    
         try {
-
             foreach ($List_Fees as $List_Fee) {
-                // حفظ البيانات في جدول فواتير الرسوم الدراسية
-                $Fees = new Fee_invoice();
-                $Fees->invoice_date = date('Y-m-d');
-                $Fees->student_id = $List_Fee['student_id'];
-                $Fees->Grade_id = $request->Grade_id;
-                $Fees->Classroom_id = $request->Classroom_id;;
-                $Fees->fee_id = $List_Fee['fee_id'];
-                $Fees->amount = $List_Fee['amount'];
-                $Fees->description = $List_Fee['description'];
-                $Fees->save();
-
-                // حفظ البيانات في جدول حسابات الطلاب
+                $Fees = Fee_invoice::firstOrCreate([ //dont repeat insert
+                    'student_id' => $List_Fee['student_id'],
+                    'fee_id' => $List_Fee['fee_id'],
+                ], [
+                    'invoice_date' => date('Y-m-d'),
+                    'Grade_id' => $request->Grade_id,
+                    'Classroom_id' => $request->Classroom_id,
+                    'amount' => $List_Fee['amount'],
+                    'description' => $List_Fee['description'],
+                ]);
+                // Create StudentAccount entry
                 $StudentAccount = new StudentAccount();
                 $StudentAccount->date = date('Y-m-d');
                 $StudentAccount->type = 'invoice';
                 $StudentAccount->fee_invoice_id = $Fees->id;
                 $StudentAccount->student_id = $List_Fee['student_id'];
-                $StudentAccount->Debit = $List_Fee['amount'];
+                $StudentAccount->Debit = $List_Fee['amount']; //مدين عشان اثبت الفاتورة اني عايز من الطالب المبلغ دا
                 $StudentAccount->credit = 0.00;
                 $StudentAccount->description = $List_Fee['description'];
                 $StudentAccount->save();
             }
-
             DB::commit();
-
+    
             toastr()->success(trans('messages.success'));
             return redirect()->route('Fees_Invoices.index');
         } catch (\Exception $e) {
@@ -76,6 +74,10 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+    
+
+
 
     public function update($request)
     {

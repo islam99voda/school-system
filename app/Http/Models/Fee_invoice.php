@@ -7,6 +7,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Fee_invoice extends Model
 {
+    protected $guarded = [];
     public function grade()
     {
         return $this->belongsTo('App\Http\Models\Grade', 'Grade_id');

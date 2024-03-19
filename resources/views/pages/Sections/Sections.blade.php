@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    
 @section('title')
     {{ trans('Sections_trans.title_page') }}
 @stop
@@ -103,6 +103,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
                                     @endforeach

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    
 @section('title')
     اضافة فاتورة جديدة
 @stop
@@ -8,7 +8,7 @@
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-اضافة فاتورة جديدة {{$student->name}}
+اضافة فاتورة جديدة للطالب {{$student->name}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -48,7 +48,7 @@
                                                     <label for="Name_en" class="mr-sm-2">نوع الرسوم</label>
                                                     <div class="box">
                                                         <select class="fancyselect" name="fee_id" required>
-                                                            <option value="">-- اختار من القائمة --</option>
+                                                            <option value="">-- اختار من القائمة نوع الرسوم --</option>
                                                             @foreach($fees as $fee)
                                                                 <option value="{{ $fee->id }}">{{ $fee->title }}</option>
                                                             @endforeach

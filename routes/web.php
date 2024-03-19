@@ -67,7 +67,7 @@ Route::group([
         Route::resource('Graduated', 'GraduatedController');
         Route::resource('Fees', 'FeesController');
         Route::resource('Fees_Invoices', 'FeesInvoicesController');
-
+        Route::resource('receipt_students', 'ReceiptStudentsController');
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

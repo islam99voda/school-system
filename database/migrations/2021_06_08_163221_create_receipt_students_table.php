@@ -13,11 +13,11 @@ class CreateReceiptStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('receipt_students', function (Blueprint $table) {
+        Schema::create('receipt_students', function (Blueprint $table) { //سند القبض
             $table->id();
             $table->date('date');
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->decimal('Debit',8,2)->nullable();
+            $table->decimal('Debit',8,2)->nullable(); 
             $table->string('description');
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ class CreateFundAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fund_accounts', function (Blueprint $table) {
+        Schema::create('fund_accounts', function (Blueprint $table) { //الصندوق
             $table->id();
             $table->date('date');
             $table->foreignId('receipt_id')->nullable()->references('id')->on('receipt_students')->onDelete('cascade');

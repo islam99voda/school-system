@@ -38,7 +38,6 @@ class FeesRepository implements FeesRepositoryInterface
     public function store($request)
     {
         try {
-
             $fees = new Fee();
             $fees->title = ['en' => $request->title_en, 'ar' => $request->title_ar];
             $fees->amount  =$request->amount;
@@ -50,7 +49,6 @@ class FeesRepository implements FeesRepositoryInterface
             $fees->save();
             toastr()->success(trans('messages.success'));
             return redirect()->route('Fees.create');
-
         }
 
         catch (\Exception $e) {
