@@ -2,13 +2,13 @@
 @section('css')
     
 @section('title')
-   استبعاد رسوم
+    سند صرف
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    استبعاد رسوم {{$student->name}}
+    سند صرف {{$student->name}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                    <form method="post"  action="{{ route('ProcessingFee.store') }}" autocomplete="off">
+                    <form method="post"  action="{{ route('Payment_students.store') }}" autocomplete="off">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">

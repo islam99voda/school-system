@@ -4,11 +4,11 @@
 namespace App\Repository;
 
 
-use App\Models\ProcessingFee;
-use App\Models\Student;
-use App\Models\StudentAccount;
-use Illuminate\Database\Eloquent\Model;
+use App\Http\Models\Student;
+use App\Http\Models\StudentAccount;
+use App\Http\Models\ProcessingFee;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
 {
@@ -31,7 +31,7 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
         return view('pages.ProcessingFee.edit',compact('ProcessingFee'));
     }
 
-    public function store($request)
+    public function store($request) //عملية استبعاد الرسوم
     {
         DB::beginTransaction();
 
@@ -40,7 +40,7 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
             $ProcessingFee = new ProcessingFee();
             $ProcessingFee->date = date('Y-m-d');
             $ProcessingFee->student_id = $request->student_id;
-            $ProcessingFee->amount = $request->Debit;
+            $ProcessingFee->amount = $request->Debit; //المبلغ المستبعد
             $ProcessingFee->description = $request->description;
             $ProcessingFee->save();
 
@@ -51,8 +51,8 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
             $students_accounts->type = 'ProcessingFee';
             $students_accounts->student_id = $request->student_id;
             $students_accounts->processing_id = $ProcessingFee->id;
-            $students_accounts->Debit = 0.00;
-            $students_accounts->credit = $request->Debit;
+            $students_accounts->Debit = 0.00; //مدين
+            $students_accounts->credit = $request->Debit; //دائن للإثبات فقط
             $students_accounts->description = $request->description;
             $students_accounts->save();
 

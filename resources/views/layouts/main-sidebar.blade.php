@@ -126,9 +126,9 @@
                             <li> <a href="{{route('Fees.create')}}">إضافة رسوم جديدة</a> </li>
                             <li> <a href="{{route('Fees.index')}}">قائمة الرسوم الدراسية</a> </li>
                             <li> <a href="{{route('Fees_Invoices.index')}}">قائمة الفواتير</a> </li>
-                            <li> <a href="{{route('receipt_students.index')}}">سندات القبض</a> </li>
-                            <li> <a href="#">استبعاد رسوم</a> </li>
-                            <li> <a href="#">سندت الصرف</a> </li>
+                            <li> <a href="{{route('receipt_students.index')}}">قائمة سندات القبض</a> </li>
+                            <li> <a href="{{route('ProcessingFee.index')}}">قائمة استبعاد الرسوم</a> </li>
+                            <li> <a href="{{route('Payment_students.index')}}">سندت الصرف</a> </li>
                         </ul>
                     </li>
 
