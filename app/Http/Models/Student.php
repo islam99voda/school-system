@@ -64,4 +64,10 @@ class Student extends Model
         {
             return $this->hasMany('App\Http\Models\StudentAccount', 'student_id');
         }
+
+           // علاقة بين جدول الطلاب وجدول الحضور والغياب
+    public function attendance()
+    {
+        return $this->hasMany('App\Http\Models\Attendance', 'student_id');
+    }
 }

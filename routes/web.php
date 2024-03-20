@@ -70,6 +70,12 @@ Route::group([
         Route::resource('receipt_students', 'ReceiptStudentsController');
         Route::resource('ProcessingFee', 'ProcessingFeeController');
         Route::resource('Payment_students', 'PaymentController');
+        Route::resource('Attendance', 'AttendanceController');
+    });
+
+    // ==============================Subjects============================
+    Route::group(['namespace' => 'Subjects'], function () {
+        Route::resource('subjects', 'SubjectController');
     });
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
