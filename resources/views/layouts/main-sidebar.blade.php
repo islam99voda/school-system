@@ -169,19 +169,20 @@
 
 
 
-                    <!-- library-->
-                    <li>
+                 <!-- library-->
+                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#library-icon">
                             <div class="pull-left"><i class="fas fa-book"></i><span class="right-nav-text">{{trans('main_trans.library')}}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="library-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{route('library.index')}}">قائمة الكتب</a> </li>
                         </ul>
                     </li>
+
+
+                    
 
 
                     <!-- Online classes-->
@@ -192,24 +193,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Onlineclasses-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('online_classes.index')}}">الاتصال مباشر مع زوم</a> </li>
-                            <li> <a href="themify-icons.html">الاتصال الغير مباشر مع زوم</a> </li>
-
-                        </ul>
-                    </li>
-
-
-                    <!-- Onlinec lasses-->
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Onlineclasses-icon">
-                            <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{trans('main_trans.Onlineclasses')}}</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="Onlineclasses-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
+                            <li> <a href="{{route('online_classes.index')}}">حصص اونلاين مع زوم</a> </li>
                         </ul>
                     </li>
 
