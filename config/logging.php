@@ -35,8 +35,8 @@ return [
     */
 
     'channels' => [
-        'stack' => [
-            'driver' => 'stack',
+        'stack' => [ // stack means it will log to multiple channels at once for performance reasons (eg. multiple database connections)
+            'driver' => 'stack', // driver means it will log to a single channel at a time 
             'channels' => ['single'],
             'ignore_exceptions' => false,
         ],

@@ -3,20 +3,26 @@
 namespace App\Providers;
 
 use App\Repository\FeesRepository;
+use App\Repository\QuizzRepository;
 use App\Repository\PaymentRepository;
 use App\Repository\StudentRepository;
 use App\Repository\SubjectRepository;
+use App\Repository\TeacherRepository;
+use App\Repository\QuestionRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repository\AttendanceRepository;
 use App\Repository\FeeInvoicesRepository;
 use App\Repository\FeesRepositoryInterface;
 use App\Repository\ProcessingFeeRepository;
+use App\Repository\QuizzRepositoryInterface;
 use App\Repository\ReceiptStudentsRepository;
 use App\Repository\PaymentRepositoryInterface;
 use App\Repository\StudentGraduatedRepository;
 use App\Repository\StudentPromotionRepository;
 use App\Repository\StudentRepositoryInterface;
 use App\Repository\SubjectRepositoryInterface;
+use App\Repository\TeacherRepositoryInterface;
+use App\Repository\QuestionRepositoryInterface;
 use App\Repository\AttendanceRepositoryInterface;
 use App\Repository\FeeInvoicesRepositoryInterface;
 use App\Repository\ProcessingFeeRepositoryInterface;
@@ -33,8 +39,8 @@ class RepoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Repository\TeacherRepositoryInterface', 'App\Repository\TeacherRepository');
-        $this->app->bind('App\Repository\StudentRepositoryInterface', 'App\Repository\StudentRepository');
+        $this->app->bind(StudentRepositoryInterface::class,StudentRepository::class);
+        $this->app->bind(TeacherRepositoryInterface::class,TeacherRepository::class);
         $this->app->bind(StudentPromotionRepositoryInterface::class,StudentPromotionRepository::class);
         $this->app->bind(StudentRepositoryInterface::class,StudentRepository::class);
         $this->app->bind(StudentGraduatedRepositoryInterface::class,StudentGraduatedRepository::class);
@@ -45,6 +51,9 @@ class RepoServiceProvider extends ServiceProvider
         $this->app->bind(PaymentRepositoryInterface::class,PaymentRepository::class);
         $this->app->bind(AttendanceRepositoryInterface::class,AttendanceRepository::class);
         $this->app->bind(SubjectRepositoryInterface::class,SubjectRepository::class);
+        $this->app->bind(QuizzRepositoryInterface::class,QuizzRepository::class);
+        $this->app->bind(QuestionRepositoryInterface::class,QuestionRepository::class);
+
     }
 
     /**

@@ -77,5 +77,17 @@ Route::group([
     Route::group(['namespace' => 'Subjects'], function () {
         Route::resource('subjects', 'SubjectController');
     });
+
+    //==============================Quizzes============================
+    Route::group(['namespace' => 'Quizzes'], function () {
+        Route::resource('Quizzes', 'QuizzController');
+    });
+
+
+    //==============================questions============================
+    Route::group(['namespace' => 'questions'], function () {
+        Route::resource('questions', 'QuestionController');
+    });
+    
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
