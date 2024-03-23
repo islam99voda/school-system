@@ -26,7 +26,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                    @endif
+                    @endif 
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <br>
@@ -79,7 +79,7 @@
                                 <div class="form-row">
                                     <div class="col">
 
-                                        <embed src="{{ URL::asset('attachments/library/'.$book->file_name) }}" type="application/pdf"   height="150px" width="100px"><br><br>
+                                        <embed src="{{ route('file.show', ['filename' => $book->file_name]) }}" type="application/pdf" height="500px" width="500px"><br><br>
 
                                         <div class="form-group">
                                             <label for="academic_year">المرفقات : <span class="text-danger">*</span></label>

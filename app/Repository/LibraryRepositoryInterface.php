@@ -4,6 +4,8 @@ namespace App\Repository;
 
 interface LibraryRepositoryInterface
 {
+    public function show($filename);
+    
     public function index();
 
     public function create();

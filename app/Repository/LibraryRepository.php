@@ -23,22 +23,18 @@ class LibraryRepository implements LibraryRepositoryInterface
         return view('pages.library.create',compact('grades'));
     }
 
-public function store($request)
+    public function store($request)
     {
         try {
             $books = new Library();
             $books->title = $request->title;
-            $books->file_name = $request->file('file_name')->getClientOriginalName();
+            $books->file_name =  $request->file('file_name')->getClientOriginalName();
             $books->Grade_id = $request->Grade_id;
             $books->classroom_id = $request->Classroom_id;
             $books->section_id = $request->section_id;
             $books->teacher_id = 1;
             $books->save();
-
-            // Decide on a folder structure and pass the folder name
-            $folder = 'books'; // Example folder name
-            $this->uploadFile($request, 'file_name', $folder);
-
+            $this->uploadFile($request,'file_name','library'); // upload file take three parameters (request,file_name,folder_name)
             toastr()->success(trans('messages.success'));
             return redirect()->route('library.create');
         } catch (\Exception $e) {
@@ -56,17 +52,13 @@ public function store($request)
     public function update($request)
     {
         try {
-
             $book = library::findorFail($request->id);
             $book->title = $request->title;
-
             if($request->hasfile('file_name')){
-
                 $this->deleteFile($book->file_name);
-
-                $this->uploadFile($request,'file_name');
-
                 $file_name_new = $request->file('file_name')->getClientOriginalName();
+                $this->uploadFile($request,'file_name','library'); // upload file take three parameters (request,file_name,folder_name)
+
                 $book->file_name = $book->file_name !== $file_name_new ? $file_name_new : $book->file_name;
             }
 
@@ -90,8 +82,25 @@ public function store($request)
         return redirect()->route('library.index');
     }
 
+    public function show($filename)
+    {
+        $file_path = storage_path('app/attachments/library/' . $filename);
+
+        if (file_exists($file_path)) {
+            return response()->file($file_path);
+        } else {
+            abort(404, 'File not found');
+        }
+    }
+
     public function download($filename)
     {
-        return response()->download(public_path('attachments/library/'.$filename));
+        $file_path = storage_path('app/attachments/library/' . $filename);
+        if (file_exists($file_path)) {
+            return response()->download($file_path);
+        } else {
+            return response()->json(['error' => 'File not found'], 404);
+        }
     }
+    
 }

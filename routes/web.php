@@ -77,6 +77,8 @@ Route::group([
 
         Route::get('download_file/{filename}', 'LibraryController@downloadAttachment')->name('downloadAttachment');
         Route::resource('library', 'LibraryController');        
+        Route::get('file/{filename}', 'LibraryController@show')->name('file.show');
+
     });
 
     // ==============================Subjects============================

@@ -49,6 +49,13 @@ return [
             'visibility' => 'public', //this is the visibility of the file 
         ],
 
+        'library' => [ //this is the name of the disk
+            'driver' => 'local',
+            'root' => storage_path('/app'), //this is the public folder
+            'url' => env('APP_URL').'/storage', //this is the storage folder 
+            'visibility' => 'public', //this is the visibility of the file 
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
