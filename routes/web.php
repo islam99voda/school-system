@@ -71,14 +71,12 @@ Route::group([
         Route::resource('ProcessingFee', 'ProcessingFeeController');
         Route::resource('Payment_students', 'PaymentController');
         Route::resource('Attendance', 'AttendanceController');
-        Route::get('download_file/{filename}', 'LibraryController@downloadAttachment')->name('downloadAttachment');
-
         Route::get('/indirect', 'OnlineClasseController@indirectCreate')->name('indirect.create');
         Route::post('/indirect', 'OnlineClasseController@storeIndirect')->name('indirect.store');
         Route::resource('online_classes', 'OnlineClasseController');
 
-        Route::resource('library', 'LibraryController');
-        
+        Route::get('download_file/{filename}', 'LibraryController@downloadAttachment')->name('downloadAttachment');
+        Route::resource('library', 'LibraryController');        
     });
 
     // ==============================Subjects============================
