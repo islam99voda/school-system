@@ -97,6 +97,10 @@ Route::group([
         Route::resource('questions', 'QuestionController');
     });
 
+    //==============================Setting============================
+    Route::resource('settings', 'SettingController');
+    
+
     
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

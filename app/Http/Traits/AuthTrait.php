@@ -18,7 +18,7 @@ trait AuthTrait
             $guardName= 'teacher';
         }
         else{
-            $guardName= 'web';
+            $guardName= 'web'; //admin
         }
         return $guardName;
     }

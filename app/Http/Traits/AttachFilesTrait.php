@@ -3,27 +3,51 @@
 namespace App\Http\Traits;
 
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait AttachFilesTrait
 {
-        public function uploadFile($request,$name,$folder)
+
+
+    public function saveImage(UploadedFile $image, $path)
     {
-        $file_name = $request->file($name)->getClientOriginalName();
-        $request->file($name)->storeAs('attachments/',$folder.'/'.$file_name,'library');
-        //store as take two parameters (path, name, disk)
+        $filename = uniqid() . '.' . $image->getClientOriginalExtension();
+        Storage::putFileAs($path, $image, $filename);
+
+        return $filename;
     }
 
-    public function deleteFile($name)
+
+
+    public function uploadFile($file, $name, $folder, $disk)
     {
-        $exists = Storage::disk('library')->exists('attachments/library/'.$name);
-
-        if($exists)
-        {
-            Storage::disk('library')->delete('attachments/library/'.$name);
-        }
+        define('dinamicfolder', 'attachments/');
+        $file->storeAs(dinamicfolder, $folder . '/' . $name, $disk);
     }
+    
 
-    public function downloadfile($name)
+
+
+
+    public function delete_one_file($disk, $folder) //use to delete folder has one file only
+    {
+        $path = 'attachments/' . $folder;
+        if(!empty($path))
+        Storage::disk($disk)->deleteDirectory($path);
+}
+
+
+
+public function deleteFile($disk, $folder,$name )
+{
+    $path = Storage::disk($disk)->exists('attachments/',$folder .'/'.$name,);
+    if($path)
+    {
+        Storage::disk($disk)->delete('attachments/',$folder .'/'.$name,);
+    }
+}
+
+public function downloadfile($name)
     {
         return Storage::disk('library')->download('attachments/library/'.$name);
     }
