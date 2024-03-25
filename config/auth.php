@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Models\Student;
+use App\Http\Models\Teacher;
+use App\Http\Models\My_Parent;
+
 return [
 
     /*
@@ -36,10 +40,29 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'web' => [ //admin
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users', //users table
         ],
+
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
+
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ],
+
+        'parent' => [
+            'driver' => 'session',
+            'provider' => 'my__parents',
+        ],
+
+
+
+
 
         'api' => [
             'driver' => 'token',
@@ -66,10 +89,29 @@ return [
     */
 
     'providers' => [
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => Student::class,
+        ],
+
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => Teacher::class,
+        ],
+
+        'my__parents' => [
+            'driver' => 'eloquent',
+            'model' => My_Parent::class,
+        ],
+
+
+
 
         // 'users' => [
         //     'driver' => 'database',

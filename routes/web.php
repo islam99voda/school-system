@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -15,18 +16,43 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 // routes/web.php
-Route::get('/', function () {
-    return view('auth.login');
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
+Route::get('/', 'HomeController@index')->middleware('guest')->name('selection');
+
+
+Route::group(['namespace' => 'Auth'], function () {
+
+Route::get('/login/{type?}',[LoginController::class, 'loginform'])->middleware('guest')->name('login.show');
+
+Route::post('/login',[LoginController::class, 'login'])->name('login');
+
+Route::get('/logout/{type}', [LoginController::class, 'logout'])->name('logout');
+
+
 });
+
+
+
+
+
+
+
+
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth']
 ], function () {
 
+    // ==============================Admin dashboard============================
+   
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     // ==============================dashboard============================
-    Route::view('/', 'dashboard')->name('dashboard');
-
-    // ==============================dashboard============================
+   
+   
     Route::namespace('Grades')->group(function () {
         Route::resource('Grades', 'GradeController');
     });
@@ -74,7 +100,6 @@ Route::group([
         Route::get('/indirect', 'OnlineClasseController@indirectCreate')->name('indirect.create');
         Route::post('/indirect', 'OnlineClasseController@storeIndirect')->name('indirect.store');
         Route::resource('online_classes', 'OnlineClasseController');
-
         Route::get('download_file/{filename}', 'LibraryController@downloadAttachment')->name('downloadAttachment');
         Route::resource('library', 'LibraryController');        
         Route::get('file/{filename}', 'LibraryController@show')->name('file.show');
@@ -101,6 +126,6 @@ Route::group([
     Route::resource('settings', 'SettingController');
     
 });
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
