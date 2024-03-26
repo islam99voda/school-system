@@ -36,12 +36,6 @@ Route::get('/logout/{type}', [LoginController::class, 'logout'])->name('logout')
 
 
 
-
-
-
-
-
-
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth']

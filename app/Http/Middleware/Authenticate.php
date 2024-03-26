@@ -19,9 +19,7 @@ class Authenticate extends Middleware
             elseif(request()->routeIs('/parent/dashboard')) {
                 return route('selection');
             }
-            else {
-                return route('selection');
-            }
+            
         }
     }
 }

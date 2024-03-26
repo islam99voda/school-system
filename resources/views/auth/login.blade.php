@@ -66,9 +66,7 @@ login-->
                             <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول ادمن</h3>
                         @endif
                         <form method="POST" action="{{route('login')}}">
-                            @csrf
-                            <input type="hidden" value="{{$type}}" name="type">
-
+                            @csrf                            
                             <div class="section-field mb-20">
                                 <label class="mb-10" for="name">البريدالالكتروني*</label>
                                 <input id="email" type="email"
@@ -79,8 +77,9 @@ login-->
                                             <strong>{{ $message }}</strong>
                                         </span>
                                 @enderror
-
+                                <input type="hidden" value="{{$type}}" name="type">
                             </div>
+
 
                             <div class="section-field mb-20">
                                 <label class="mb-10" for="Password">كلمة المرور * </label>

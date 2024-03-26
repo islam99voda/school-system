@@ -15,7 +15,11 @@ return [
     | reset options for your application. You may change these defaults
     | as required, but they're a perfect start for most applications.
     |
+
     */
+
+
+    
 
     'defaults' => [
         'guard' => 'web',
@@ -37,6 +41,26 @@ return [
     |
     | Supported: "session", "token"
     |
+
+        $_SESSION = [     
+            "guard" => [
+                "key" => value,
+                "key" => value,
+                "key" => value,
+            ],
+            
+            "user" => [
+                "id" => 1,
+                "name" => islam,
+                "email" => islam.voda99.com,
+            ],
+            
+            "admin" => [
+                "id" => 1,
+                "name" => ahmed,
+                "email" => islam.voda99.com,
+            ]
+    ]
     */
 
     'guards' => [

@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use SettingsTableSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\GradeSeeder;
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call(UserSeeder::class);
 //         $this->call(GradeSeeder::class);
         // $this->call(ClassroomTableSeeder::class);
         // $this->call(SectionsTableSeeder::class);

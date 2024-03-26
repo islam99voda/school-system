@@ -21,18 +21,18 @@ class LoginController extends Controller
     }
 
 
-    public function loginForm($type='admin')//لو مجالكش قيمة فديه القيمة الافتراضية بتاعتك
+    public function loginForm($type='admin') //admin is default
     {
         return view('auth.login', compact('type'));
     }
 
     public function login(Request $request)
-    { 
+    {
         if (Auth::guard($this->chekGuard($request))->attempt(['email' => $request->email, 'password' => $request->password])) {
             return $this->redirect($request);
         }
         return back()->withErrors([
-            'email' => 'The email or password is incorrect.'
+            'email' => '. The email or password is incorrect'
         ]);
     }
 

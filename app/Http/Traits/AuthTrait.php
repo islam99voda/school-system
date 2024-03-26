@@ -7,11 +7,11 @@ use App\Providers\RouteServiceProvider;
 trait AuthTrait
 {
     public function chekGuard($request)
-    { //لو الجارد اللي جي مش موجود حوله للويب
+    { //store type in request
         return in_array($request->type, ['student', 'parent', 'teacher']) ?  $request->type : 'web';
     }
 
-    public function redirect($request) //intended بعد مايعمل لوجين هاته عند آخر حاجة وقف عندها وكان
+    public function redirect($request) 
     {
         if ($request->type == 'student') { 
             return redirect()->intended(RouteServiceProvider::STUDENT);
