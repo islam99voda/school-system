@@ -14,4 +14,6 @@ class My_Parent extends Authenticatable
     public $translatable = ['Name_Father','Job_Father','Name_Mother','Job_Mother']; //دول هيتم ترجمتهم
     protected $table = 'my__parents';
     protected $guarded = [];
+
+    
 }

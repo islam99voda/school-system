@@ -75,15 +75,15 @@ class AddParent extends Component
 
         public function updated($propertyName)
         {
-        $this->validateOnly($propertyName, [
-            'Email' => 'required|email',
-            'National_ID_Father' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
-            'Passport_ID_Father' => 'min:10|max:10',
-            'Phone_Father' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'National_ID_Mother' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
-            'Passport_ID_Mother' => 'min:10|max:10',
-            'Phone_Mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
-        ]);
+            $this->validateOnly($propertyName, [
+                'Email' => 'required|email',
+                'National_ID_Father' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
+                'Passport_ID_Father' => 'min:10|max:10',
+                'Phone_Father' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+                'National_ID_Mother' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
+                'Passport_ID_Mother' => 'min:10|max:10',
+                'Phone_Mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+            ]);
         }
 
     //secondStepSubmit
@@ -169,18 +169,48 @@ class AddParent extends Component
     }
 
     public function submitForm_edit(){
-        
-        if ($this->Parent_id){
-            $parent = My_Parent::find($this->Parent_id);
-            $parent->update([
-                'Email' => $this->Email,
-                'Passport_ID_Father' => $this->Passport_ID_Father,
-                'National_ID_Father' => $this->National_ID_Father,
-            ]);
-
+        try {
+            if ($this->Parent_id){
+                $parent = My_Parent::find($this->Parent_id);
+                if ($parent) {
+                    $parent->update([
+                        'Email' => $this->Email,
+                        'Password' => Hash::make($this->password),
+                        'Name_Father' => ['en' => $this->Name_Father_en, 'ar' => $this->Name_Father],
+                        'Name_Mother' => ['en' => $this->Name_Mother_en, 'ar' => $this->Name_Mother],
+                        'Job_Father' => ['en' => $this->Job_Father_en, 'ar' => $this->Job_Father],
+                        'Job_Mother' => ['en' => $this->Job_Mother_en, 'ar' => $this->Job_Mother],
+                        'National_ID_Father' => $this->National_ID_Father,
+                        'Passport_ID_Father' => $this->Passport_ID_Father,
+                        'Phone_Father' => $this->Phone_Father,
+                        'Nationality_Father_id' => $this->Nationality_Father_id,
+                        'Blood_Type_Father_id' => $this->Blood_Type_Father_id,
+                        'Religion_Father_id' => $this->Religion_Father_id,
+                        'Address_Father' => $this->Address_Father,
+                        'National_ID_Mother' => $this->National_ID_Mother,
+                        'Passport_ID_Mother' => $this->Passport_ID_Mother,
+                        'Phone_Mother' => $this->Phone_Mother,
+                        'Nationality_Mother_id' => $this->Nationality_Mother_id,
+                        'Blood_Type_Mother_id' => $this->Blood_Type_Mother_id,
+                        'Religion_Mother_id' => $this->Religion_Mother_id,
+                        'Address_Mother' => $this->Address_Mother,
+                    ]);
+                    $this->successMessage = trans('messages.success');
+                    $this->clearForm();
+                    $this->updateMode = true;  //فعل وضع التعديل
+                    $this->show_table = false;  //اخفي الجدول وافتح الفورم
+                } else {
+                    $this->catchError = "Parent not found with ID: " . $this->Parent_id;
+                }
+            } else {
+                $this->catchError = "Parent ID is not set.";
+            }
+        } catch (\Exception $e) {
+            $this->catchError = $e->getMessage();
         }
-        return redirect()->to('/add_parent');
     }
+    
+    
 
     public function edit($id) //اللي بيفتح فورم التعديل
     {

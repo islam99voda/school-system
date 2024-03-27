@@ -4,9 +4,10 @@ namespace App\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Teacher extends Model
+class Teacher extends  Authenticatable
 {
     use HasTranslations;
     public $translatable = ['Name'];

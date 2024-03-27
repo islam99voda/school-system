@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Traits\AuthTrait;
 use Illuminate\Http\Request;
+use App\Http\Traits\AuthTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -38,12 +39,17 @@ class LoginController extends Controller
 
     public function logout(Request $request, $type)
     {
+        $locale = Session::get('locale');
+    
         Auth::guard($type)->logout();
-
+    
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
+    
+        Session::put('locale', $locale);
+    
         return redirect('/');
     }
+    
+
 }
