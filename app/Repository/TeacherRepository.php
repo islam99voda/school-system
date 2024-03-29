@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Hash;
 class TeacherRepository implements TeacherRepositoryInterface{
 
     public function getAllTeachers(){
-        return Teacher::all(); 
+        return Teacher::all();
     }
- 
+
     public function Getspecialization(){
         return Specialization::all();
     }
@@ -21,14 +21,14 @@ class TeacherRepository implements TeacherRepositoryInterface{
     public function GetGender(){
        return Gender::all();
     }
-    
+
 
     public function StoreTeachers($request){
 
         try {
                 $Teachers = new Teacher();
                 $Teachers->Email = $request->Email;
-                $Teachers->Password =  Hash::make($request->Password);
+                $Teachers->password = bcrypt($request->password);
                 $Teachers->Name = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
                 $Teachers->Specialization_id = $request->Specialization_id;
                 $Teachers->Gender_id = $request->Gender_id;
@@ -47,7 +47,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
     public function editTeachers($id)
     {
         return Teacher::findOrFail($id);
-    }    
+    }
 
 
     public function UpdateTeachers($request)

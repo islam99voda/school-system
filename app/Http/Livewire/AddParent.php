@@ -16,7 +16,7 @@ class AddParent extends Component
 {
     use WithFileUploads; //uploadلازم اضمها لو هستخدم ال
 
-    
+
     public $catchError,$show_table,$updateMode=false,    $Parent_id;
     public $photos = [];
     public $successMessage = [];
@@ -36,8 +36,8 @@ class AddParent extends Component
         $Phone_Mother, $Job_Mother, $Job_Mother_en,
         $Nationality_Mother_id, $Blood_Type_Mother_id,
         $Address_Mother, $Religion_Mother_id;
-        
-        public function render() //اول مايدخل الكلاس اللي احنا فيه دا 
+
+        public function render() //اول مايدخل الكلاس اللي احنا فيه دا
         {
             return view('livewire.add-parent', [ //روح على صفحة قائمة أولياء الأمور
                 'Nationalities' => Nationalitie::all(), //وخد معاك الجنسيات
@@ -46,13 +46,13 @@ class AddParent extends Component
                 'my_parents' => My_Parent::all(),
             ]);
         }
-        
+
         public function showformadd(){ //اول مايدوس على زرار اضافة ولي أمر
-            $this->show_table = true; 
+            $this->show_table = true;
         }
 
 
-        public function firstStepSubmit() //2لما ادوس التالي يدخلني ع الصفحة رقم 
+        public function firstStepSubmit() //2لما ادوس التالي يدخلني ع الصفحة رقم
         {
             $this->validate([ //فاليديشن inputsمتنفذهاش غير لما تعمل على كل ال
                 'Email' => 'required|unique:my__parents,Email,'.$this->id,
@@ -69,7 +69,7 @@ class AddParent extends Component
                 'Religion_Father_id' => 'required',
                 'Address_Father' => 'required',
             ]);
-            $this->currentStep = 2; //  بدل ماهو 1 خليه 2 over ride اعمل 
+            $this->currentStep = 2; //  بدل ماهو 1 خليه 2 over ride اعمل
         }
 
 
@@ -111,7 +111,7 @@ class AddParent extends Component
         $My_Parent = new My_Parent();
         // Father_INPUTS
         $My_Parent->Email = $this->Email;
-        $My_Parent->Password = Hash::make($this->Password);
+        $My_Parent->Password = bcrypt($this->Password); // Hashing the password
         $My_Parent->Name_Father = ['en' => $this->Name_Father_en, 'ar' => $this->Name_Father];
         $My_Parent->National_ID_Father = $this->National_ID_Father;
         $My_Parent->Passport_ID_Father = $this->Passport_ID_Father;
@@ -152,7 +152,7 @@ class AddParent extends Component
         catch (\Exception $e) {
             $this->catchError = $e->getMessage();
         };
-        
+
     }
 
 
@@ -164,7 +164,7 @@ class AddParent extends Component
 
     public function secondStepSubmit_edit()
     {
-        $this->updateMode = true; 
+        $this->updateMode = true;
         $this->currentStep = 3; //روح ع الخطوة 3
     }
 
@@ -175,7 +175,6 @@ class AddParent extends Component
                 if ($parent) {
                     $parent->update([
                         'Email' => $this->Email,
-                        'Password' => Hash::make($this->password),
                         'Name_Father' => ['en' => $this->Name_Father_en, 'ar' => $this->Name_Father],
                         'Name_Mother' => ['en' => $this->Name_Mother_en, 'ar' => $this->Name_Mother],
                         'Job_Father' => ['en' => $this->Job_Father_en, 'ar' => $this->Job_Father],
@@ -209,8 +208,8 @@ class AddParent extends Component
             $this->catchError = $e->getMessage();
         }
     }
-    
-    
+
+
 
     public function edit($id) //اللي بيفتح فورم التعديل
     {
@@ -244,7 +243,7 @@ class AddParent extends Component
         $this->Address_Mother =$My_Parent->Address_Mother;
         $this->Religion_Mother_id =$My_Parent->Religion_Mother_id;
     }
-    
+
     public function clearForm()
     {
         $this->Email = '';
@@ -280,7 +279,7 @@ class AddParent extends Component
         $parent = My_Parent::findOrFail($id);
 
         $attachments = ParentAttachment::where('parent_id', $parent->id)->get();
-        
+
         if ($attachments->isNotEmpty()) {
             foreach ($attachments as $attachment) {
                 // Delete the attachment file from storage
@@ -291,14 +290,14 @@ class AddParent extends Component
         }
         // Delete the user
         $parent->delete();
-    
+
         return redirect()->to('/add_parent');
     }
 
-    
-    
+
+
     public function back($step)
     {
-        $this->currentStep = $step; 
+        $this->currentStep = $step;
     }
 }

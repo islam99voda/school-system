@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class StudentRepository implements StudentRepositoryInterface{ 
+class StudentRepository implements StudentRepositoryInterface{
 
     public function Get_Student()
     {
@@ -27,7 +27,7 @@ class StudentRepository implements StudentRepositoryInterface{
         $data['my_classes'] = Grade::all();
         $data['parents'] = My_Parent::all();
         $data['Genders'] = Gender::all();
-        $data['nationals'] = Nationalitie::all(); 
+        $data['nationals'] = Nationalitie::all();
         $data['bloods'] = Type_Blood::all();
         return view('pages.Students.add',$data); //compactافضل من ال
      }
@@ -49,7 +49,7 @@ class StudentRepository implements StudentRepositoryInterface{
             $Edit_Students = Student::findorfail($request->id);
             $Edit_Students->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
             $Edit_Students->email = $request->email;
-            $Edit_Students->password = Hash::make($request->password);
+            $Edit_Students->password = bcrypt($request->password);
             $Edit_Students->gender_id = $request->gender_id;
             $Edit_Students->nationalitie_id = $request->nationalitie_id;
             $Edit_Students->blood_id = $request->blood_id;
@@ -149,9 +149,9 @@ class StudentRepository implements StudentRepositoryInterface{
             $file->storeAs('attachments/students/'.$request->student_name, $file->getClientOriginalName(),'upload_attachments');
             // insert in image_table
             $images= new image();
-            $images->filename=$name; // image name 
-            $images->imageable_id = $request->student_id; // student_id 
-            $images->imageable_type = 'App\Http\Models\Student'; // student model 
+            $images->filename=$name; // image name
+            $images->imageable_id = $request->student_id; // student_id
+            $images->imageable_type = 'App\Http\Models\Student'; // student model
             $images->save();
         }
             toastr()->success(trans('messages.success'));
@@ -180,14 +180,14 @@ class StudentRepository implements StudentRepositoryInterface{
 
     public function Open_attachment($studentsname, $filename) {
         $filePath = 'attachments/students/' . $studentsname . '/' . $filename;
-        
+
         if (Storage::disk('upload_attachments')->exists($filePath)) {
             return response()->file(storage_path($filePath));
         } else {
             abort(404, "File not found");
         }
     }
-    
+
 
 
 

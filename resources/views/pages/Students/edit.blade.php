@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    
+
 @section('title')
     {{trans('Students_trans.Student_Edit')}}
 @stop
@@ -61,8 +61,8 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{trans('Students_trans.password')}} :</label>
-                                    <input value="{{ $Students->password }}" type="password" name="password" class="form-control" >
+                                    <label>{{ trans('Students_trans.password') }} :</label>
+                                    <input type="password" name="password" class="form-control">
                                 </div>
                             </div>
 

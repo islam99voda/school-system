@@ -16,7 +16,7 @@
                     </div>
                     <div class="col">
                         <label for="title">{{ trans('Parent_trans.Password') }}</label>
-                        <input type="password" wire:model.defer="Password" class="form-control" placeholder="{{ trans('Enter Password') }}">
+                        <input type="Password" wire:model.defer="Password" class="form-control" placeholder="{{ trans('Enter Password') }}">
                         @error('Password')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -145,4 +145,4 @@
             </div>
         </div>
     </div>
-    
+

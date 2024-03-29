@@ -42,12 +42,14 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col">
-                                    <label for="title">{{trans('Teacher_trans.Password')}}</label>
-                                    <input type="password" name="Password" value="{{$Teachers->Password}}" class="form-control">
-                                    @error('Password')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>{{trans('Teacher_trans.Password')}} :</label>
+                                        <input type="password" name="password" class="form-control">
+                                        @error('Password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <br>
