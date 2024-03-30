@@ -1,11 +1,10 @@
 
-@if($currentStep != 1)<!-- لو مش واقف ع الخطوة رقم 1-->
-    <div style="display: none" class="row setup-content" id="step-1"> <!--متعرضش الفورم-->
+@if($currentStep != 1)
+    <div style="display: none" class="row setup-content" id="step-1">
 @endif
         <div class="col-xs-12">
             <div class="col-md-12">
                 <br>
-                <!--البريد الإلكتروني والباسورد-->
                 <div class="form-row">
                     <div class="col">
                         <label for="title">{{trans('Parent_trans.Email')}}</label>
@@ -41,14 +40,12 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-3">
-                        <!--اسم الوظيفة باللغة العربية-->
                         <label for="title">{{trans('Parent_trans.Job_Father')}}</label>
                         <input type="text" wire:model="Job_Father" class="form-control">
                         @error('Job_Father')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                        <!--اسم الوظيفة باللغة الانجليزية-->
                     <div class="col-md-3">
                         <label for="title">{{trans('Parent_trans.Job_Father_en')}}</label>
                         <input type="text" wire:model="Job_Father_en" class="form-control">
@@ -56,7 +53,6 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                        <!--رقم الهوية-->
                     <div class="col">
                         <label for="title">{{trans('Parent_trans.National_ID_Father')}}</label>
                         <input type="text" wire:model="National_ID_Father" class="form-control">
@@ -64,7 +60,6 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                        <!--رقم جواز السفر-->
                     <div class="col">
                         <label for="title">{{trans('Parent_trans.Passport_ID_Father')}}</label>
                         <input type="text" wire:model="Passport_ID_Father" class="form-control">
@@ -72,7 +67,6 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                        <!--رقم الهاتف-->
                     <div class="col">
                         <label for="title">{{trans('Parent_trans.Phone_Father')}}</label>
                         <input type="text" wire:model="Phone_Father" class="form-control">
@@ -82,7 +76,6 @@
                     </div>
                 </div>
 
-                <!--الجنسية-->
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCity">{{trans('Parent_trans.Nationality_Father_id')}}</label>
@@ -96,7 +89,6 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <!--فصيلة الدم-->
                 <div class="form-group col">
                         <label for="inputState">{{trans('Parent_trans.Blood_Type_Father_id')}}</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="Blood_Type_Father_id">
@@ -109,7 +101,6 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <!--الديانة-->
                     <div class="form-group col">
                         <label for="inputZip">{{trans('Parent_trans.Religion_Father_id')}}</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="Religion_Father_id">
@@ -123,7 +114,6 @@
                         @enderror
                     </div>
                 </div>
-                    <!--عنوان الأب-->
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">{{trans('Parent_trans.Address_Father')}}</label>
                     <textarea class="form-control" wire:model="Address_Father" id="exampleFormControlTextarea1" rows="4"></textarea>
@@ -132,12 +122,11 @@
                     @enderror
                 </div>
 
-                @if($updateMode) <!--لو وضع التعديل متفعل يعني بيعدل-->
+                @if($updateMode)
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit_edit"
                             type="button">{{trans('Parent_trans.Next')}}
                     </button>
-                @else<!--لو بيضيف-->
-                <!--غير الخطوة لرقم 2-->
+                @else
                     <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit"
                             type="button">{{trans('Parent_trans.Next')}}
                     </button>

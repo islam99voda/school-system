@@ -45,7 +45,7 @@ class GradeController extends Controller
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
 }
-    
+
 
 
     public function update(StoreGrades $request)
@@ -69,11 +69,11 @@ class GradeController extends Controller
 
     public function destroy(Request $request)
     {
-        // المرحلة الدراسية اللي جايلك موجود في جدول الصفوف هاته id قبل ماتحذف لو لقيت  
+
         $MyClass_id = Classroom::where('Grade_id',$request->id)->pluck('Grade_id');
-  
-        if($MyClass_id->count() == 0){ //لو ملقتوش أحذف عادي
-  
+
+        if($MyClass_id->count() == 0){ 
+
             $Grades = Grade::findOrFail($request->id)->delete();
             toastr()->error(trans('messages.Delete'));
             return redirect()->route('Grades.index');        }

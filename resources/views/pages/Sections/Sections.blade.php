@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    
+
 @section('title')
     {{ trans('Sections_trans.title_page') }}
 @stop
@@ -18,7 +18,6 @@
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
-                    <!-- زرار موديل إضافة قسم-->
                     <a class="button x-small" href="#" data-toggle="modal" data-target="#exampleModal">
                         {{ trans('Sections_trans.add_section') }}</a>
                 </div>
@@ -35,7 +34,6 @@
                         </button>
                     </div>
                 @endif
-                <!--عرض المراحل Table-->
                 <div class="card card-statistics h-99">
                     <div class="card-body">
                         <div class="accordion gray plus-icon round">
@@ -90,11 +88,9 @@
                                                                     </tr>
 
 
-                                                                    <!--تعديل قسم جديد -->
-                                                                @include('pages.Sections.modals.edit') 
+                                                                @include('pages.Sections.modals.edit')
 
-                                                                    <!--موديل حذف قسم -->
-                                                                    @include('pages.Sections.modals.delete') 
+                                                                    @include('pages.Sections.modals.delete')
 
                                                                 @endforeach
                                                                 </tbody>
@@ -110,8 +106,7 @@
                                 </div>
                         </div>
                     </div>
-                    <!--موديل إضافة قسم -->
-                    @include('pages.Sections.modals.add') 
+                    @include('pages.Sections.modals.add')
                 </div>
             </div>
         </div>
@@ -123,7 +118,7 @@
                     //
                     $('select[name="Grade_id"]').on('change', function () { //دا selectهاتلي ال
                         var Grade_id = $(this).val(); //اللي اختاره idاعملي متغير خزنلي فيه قيمة ال
-                        if (Grade_id) { //idلو في 
+                        if (Grade_id) { //idلو في
                             $.ajax({
                                 url: "{{ URL::to('classes') }}/" + Grade_id, //idدا ومررله ال urlروح ع ال
                                 type: "GET",

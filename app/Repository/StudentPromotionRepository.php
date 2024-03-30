@@ -51,7 +51,7 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
                         'academic_year'=>$request->academic_year_new,
                     ]);
                 // insert in to promotions
-                Promotion::updateOrCreate([ //بتمنع تكرار العملية
+                Promotion::updateOrCreate([
                     'student_id'=>$student->id,
                     'from_grade'=>$request->Grade_id,
                     'from_Classroom'=>$request->Classroom_id,
@@ -79,13 +79,11 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
         DB::beginTransaction();
 
         try {
-            // التراجع عن الكل
             if($request->page_id ==1){
 
              $Promotions = Promotion::all();
              foreach ($Promotions as $Promotion){
 
-                 //التحديث في جدول الطلاب
                  $ids = explode(',',$Promotion->student_id);
                  student::whereIn('id', $ids)
                  ->update([
@@ -94,14 +92,13 @@ class StudentPromotionRepository implements StudentPromotionRepositoryInterface
                  'section_id'=> $Promotion->from_section,
                  'academic_year'=>$Promotion->academic_year,
                ]);
-                 //حذف جدول الترقيات
                  Promotion::truncate();
              }
                 DB::commit();
                 toastr()->error(trans('messages.Delete'));
                 return redirect()->back();
             }
-            else{  
+            else{
                 $Promotion = Promotion::findorfail($request->id);
                 student::where('id', $Promotion->student_id)
                     ->update([

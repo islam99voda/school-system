@@ -24,7 +24,7 @@ class ClassroomController extends Controller
 
     public function store(StoreClassroom $request)
     {
-        
+
         $List_Classes = $request->List_Classes;
 
         try {
@@ -86,7 +86,7 @@ class ClassroomController extends Controller
      */
     public function update(Request $request)
     {
- 
+
         try {
 
             $Classrooms = Classroom::findOrFail($request->id);
@@ -117,9 +117,10 @@ class ClassroomController extends Controller
 
     public function delete_all(Request $request)
     {
-        $delete_all_id = explode(",", $request->delete_all_id); //conert all id to array
+        //conert all id to array
+        $delete_all_id = explode(",", $request->delete_all_id);
 
-        Classroom::whereIn('id', $delete_all_id)->Delete(); //delete them
+        Classroom::whereIn('id', $delete_all_id)->Delete();
         return redirect()->route('Classrooms.index');
     }
 

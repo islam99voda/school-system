@@ -37,7 +37,6 @@ class PaymentRepository implements PaymentRepositoryInterface
 
         try {
 
-            // حفظ البيانات في جدول سندات الصرف
             $payment_students = new PaymentStudent();
             $payment_students->date = date('Y-m-d');
             $payment_students->student_id = $request->student_id;
@@ -46,7 +45,6 @@ class PaymentRepository implements PaymentRepositoryInterface
             $payment_students->save();
 
 
-            // حفظ البيانات في جدول الصندوق
             $fund_accounts = new FundAccount();
             $fund_accounts->date = date('Y-m-d');
             $fund_accounts->payment_id = $payment_students->id;
@@ -56,7 +54,6 @@ class PaymentRepository implements PaymentRepositoryInterface
             $fund_accounts->save();
 
 
-            // حفظ البيانات في جدول حساب الطلاب
             $students_accounts = new StudentAccount();
             $students_accounts->date = date('Y-m-d');
             $students_accounts->type = 'payment';
@@ -82,7 +79,6 @@ class PaymentRepository implements PaymentRepositoryInterface
 
         try {
 
-            // تعديل البيانات في جدول سندات الصرف
             $payment_students = PaymentStudent::findorfail($request->id);
             $payment_students->date = date('Y-m-d');
             $payment_students->student_id = $request->student_id;
@@ -91,7 +87,6 @@ class PaymentRepository implements PaymentRepositoryInterface
             $payment_students->save();
 
 
-            // حفظ البيانات في جدول الصندوق
             $fund_accounts = FundAccount::where('payment_id',$request->id)->first();
             $fund_accounts->date = date('Y-m-d');
             $fund_accounts->payment_id = $payment_students->id;
@@ -101,7 +96,6 @@ class PaymentRepository implements PaymentRepositoryInterface
             $fund_accounts->save();
 
 
-            // حفظ البيانات في جدول حساب الطلاب
             $students_accounts = StudentAccount::where('payment_id',$request->id)->first();
             $students_accounts->date = date('Y-m-d');
             $students_accounts->type = 'payment';

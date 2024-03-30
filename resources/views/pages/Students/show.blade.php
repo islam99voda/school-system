@@ -21,13 +21,11 @@
                     <div class="card-body">
                         <div class="tab nav-border">
                             <ul class="nav nav-tabs" role="tablist">
-                                <!--معلومات الطالب-->
                                 <li class="nav-item">
                                     <a class="nav-link active show" id="home-02-tab" data-toggle="tab" href="#home-02"
                                        role="tab" aria-controls="home-02"
                                        aria-selected="true">{{trans('Students_trans.Student_details')}}</a>
                                 </li>
-                                <!--المرفقات-->
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-02-tab" data-toggle="tab" href="#profile-02"
                                        role="tab" aria-controls="profile-02"
@@ -40,31 +38,31 @@
                                     <table class="table table-striped table-hover" style="text-align:center">
                                         <tbody>
                                         <tr>
-                                            <th scope="row">{{trans('Students_trans.name')}}</th><!--اسم الطالب	-->
+                                            <th scope="row">{{trans('Students_trans.name')}}</th>
                                             <td>{{ $Student->name }}</td>
-                                            <th scope="row">{{trans('Students_trans.email')}}</th><!--البريد الالكتروني	-->
+                                            <th scope="row">{{trans('Students_trans.email')}}</th>
                                             <td>{{$Student->email}}</td>
-                                            <th scope="row">{{trans('Students_trans.gender')}}</th><!--النوع-->
+                                            <th scope="row">{{trans('Students_trans.gender')}}</th><
                                             <td>{{$Student->gender->Name}}</td>
-                                            <th scope="row">{{trans('Students_trans.Nationality')}}</th><!--الجنسية-->
+                                            <th scope="row">{{trans('Students_trans.Nationality')}}</th>
                                             <td>{{$Student->Nationality->Name}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th scope="row">{{trans('Students_trans.Grade')}}</th><!--المرحلة الدراسية	-->
+                                            <th scope="row">{{trans('Students_trans.Grade')}}</th><
                                             <td>{{ $Student->grade->Name }}</td>
-                                            <th scope="row">{{trans('Students_trans.classrooms')}}</th><!--الصف الدراسي	-->
+                                            <th scope="row">{{trans('Students_trans.classrooms')}}</th>
                                             <td>{{$Student->classroom->Name_Class}}</td>
-                                            <th scope="row">{{trans('Students_trans.section')}}</th><!--القسم-->
+                                            <th scope="row">{{trans('Students_trans.section')}}</th><
                                             <td>{{$Student->section->Name_Section}}</td>
-                                            <th scope="row">{{trans('Students_trans.Date_of_Birth')}}</th><!--تاريخ الميلاد	-->
+                                            <th scope="row">{{trans('Students_trans.Date_of_Birth')}}</th>
                                             <td>{{ $Student->Date_Birth}}</td>
                                         </tr>
 
                                         <tr>
-                                            <th scope="row">{{trans('Students_trans.parent')}}</th><!--ولي الامر-->
+                                            <th scope="row">{{trans('Students_trans.parent')}}</th>
                                             <td>{{ $Student->myparent->Name_Father}}</td>
-                                            <th scope="row">{{trans('Students_trans.academic_year')}}</th><!--السنة الدراسية-->
+                                            <th scope="row">{{trans('Students_trans.academic_year')}}</th>
                                             <td>{{ $Student->academic_year }}</td>
                                             <th scope="row"></th>
                                             <td></td>
@@ -75,7 +73,7 @@
                                     </table>
                                 </div>
 
-                                
+
                                 <div class="tab-pane fade" id="profile-02" role="tabpanel"
                                      aria-labelledby="profile-02-tab">
                                     <div class="card card-statistics">
@@ -104,17 +102,17 @@
                                             <thead>
                                             <tr class="table-secondary">
                                                 <th scope="col">#</th>
-                                                <th scope="col">{{trans('Students_trans.filename')}}</th> <!--اسم الفايل-->
-                                                <th scope="col">{{trans('Students_trans.created_at')}}</th> <!--تاريخ الانشاء-->
-                                                <th scope="col">{{trans('Students_trans.Processes')}}</th> <!--العمليات-->
+                                                <th scope="col">{{trans('Students_trans.filename')}}</th>
+                                                <th scope="col">{{trans('Students_trans.created_at')}}</th>
+                                                <th scope="col">{{trans('Students_trans.Processes')}}</th> <
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($Student->images as $attachment)
-                                                <tr style='text-align:center;vertical-align:middle'> 
+                                                <tr style='text-align:center;vertical-align:middle'>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>{{$attachment->filename}}</td> <!--اسم الفايل-->
-                                                    <td>{{$attachment->created_at->diffForHumans()}}</td> <!--تاريخ الاضافة-->
+                                                    <td>{{$attachment->filename}}</td> 
+                                                    <td>{{$attachment->created_at->diffForHumans()}}</td>
                                                     <td colspan="2">
                                                         <a class="btn btn-outline-primary btn-sm" href="{{ route('Open_attachment', ['studentsname' => $attachment->imageable->name, 'filename' => $attachment->filename]) }}" role="button">
                                                             <i class="fas fa-eye"></i>&nbsp;{{trans('Students_trans.open')}}
@@ -128,7 +126,7 @@
                                                                 data-target="#Delete_img{{ $attachment->id }}"
                                                                 title="{{ trans('Grades_trans.Delete') }}">{{trans('Students_trans.delete')}}
                                                         </button>
-                                                        
+
                                                     </td>
                                                 </tr>
                                                 @include('pages.Students.Delete_img')

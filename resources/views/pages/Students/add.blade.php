@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    
+
 @section('title')
     {{trans('main_trans.add_student')}}
 @stop
@@ -30,17 +30,14 @@
 
                 <form method="post"  action="{{ route('Students.store') }}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
-                    <!--المعلومات الشخصية -->
                     <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{trans('Students_trans.personal_information')}}</h6><br>
                         <div class="row">
-                            <!--الاسم باللغة العربية-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.name_ar')}} : <span class="text-danger">*</span></label>
                                     <input  type="text" name="name_ar"  class="form-control">
                                 </div>
                             </div>
-                            <!--الاسم باللغة الانجليزية-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.name_en')}} : <span class="text-danger">*</span></label>
@@ -48,7 +45,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--البريد الالكتروني :-->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -56,14 +52,12 @@
                                     <input type="email"  name="email" class="form-control" >
                                 </div>
                             </div>
-                            <!--كلمة المرور-->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.password')}} :</label>
                                     <input  type="password" name="password" class="form-control" >
                                 </div>
                             </div>
-                            <!--النوع-->
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="gender">{{trans('Students_trans.gender')}} : <span class="text-danger">*</span></label>
@@ -75,7 +69,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--الجنسية-->
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="nal_id">{{trans('Students_trans.Nationality')}} : <span class="text-danger">*</span></label>
@@ -87,7 +80,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--الدم-->
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="bg_id">{{trans('Students_trans.blood_type')}} : </label>
@@ -99,7 +91,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--تاريخ الميلاد-->
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>{{trans('Students_trans.Date_of_Birth')}}  :</label>
@@ -107,9 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                    <!--معلومات الطالب-->
                     <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{trans('Students_trans.Student_information')}}</h6><br>
-                    <!--المرحلة الدراسية-->
                     <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
@@ -122,25 +111,20 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--الصف الدراسي-->
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="Classroom_id">{{trans('Students_trans.classrooms')}} : <span class="text-danger">*</span></label>
                                     <select class="custom-select mr-sm-2" name="Classroom_id">
-                                        <!--ajaxفاضي هملاه بال optionهسيب ال-->
                                     </select>
                                 </div>
                             </div>
-                            <!--الأقسام-->
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="section_id">{{trans('Students_trans.section')}} : </label>
                                     <select class="custom-select mr-sm-2" name="section_id">
-                                        <!--ajaxفاضي هملاه بال optionهسيب ال-->
                                     </select>
                                 </div>
                             </div>
-                            <!--ولي الأمر-->
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="parent_id">{{trans('Students_trans.parent')}} : <span class="text-danger">*</span></label>
@@ -152,7 +136,6 @@
                                     </select>
                                 </div>
                             </div>
-                        <!--السنة الدراسية-->
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="academic_year">{{trans('Students_trans.academic_year')}} : <span class="text-danger">*</span></label>
@@ -168,7 +151,6 @@
                             </div>
                         </div>
                         </div><br>
-                    <!--المرفقات-->
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="academic_year">{{trans('Students_trans.Attachments')}} : <span class="text-danger">*</span></label>

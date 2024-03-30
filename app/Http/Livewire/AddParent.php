@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Storage;
 
 class AddParent extends Component
 {
-    use WithFileUploads; //uploadلازم اضمها لو هستخدم ال
+    use WithFileUploads; 
 
 
     public $catchError,$show_table,$updateMode=false,    $Parent_id;
     public $photos = [];
     public $successMessage = [];
 
-    public $currentStep = 1, // اول ماتفتح الفورم افتح ع الخطوة رقم1 يعني هو دا الديفولت
-        // أي متغير في الفورم لازم اعرفه هنا
+    public $currentStep = 1,
+
         $Name_Father,$Email, $Password,
         $Name_Father_en, $Religion_Father_id,
         $National_ID_Father, $Passport_ID_Father,
@@ -37,22 +37,22 @@ class AddParent extends Component
         $Nationality_Mother_id, $Blood_Type_Mother_id,
         $Address_Mother, $Religion_Mother_id;
 
-        public function render() //اول مايدخل الكلاس اللي احنا فيه دا
+        public function render()
         {
-            return view('livewire.add-parent', [ //روح على صفحة قائمة أولياء الأمور
-                'Nationalities' => Nationalitie::all(), //وخد معاك الجنسيات
+            return view('livewire.add-parent', [
+                'Nationalities' => Nationalitie::all(),
                 'Type_Bloods' => Type_Blood::all(),
                 'Religions' => Religion::all(),
                 'my_parents' => My_Parent::all(),
             ]);
         }
 
-        public function showformadd(){ //اول مايدوس على زرار اضافة ولي أمر
+        public function showformadd(){ //add parent
             $this->show_table = true;
         }
 
 
-        public function firstStepSubmit() //2لما ادوس التالي يدخلني ع الصفحة رقم
+        public function firstStepSubmit() //second step
         {
             $this->validate([ //فاليديشن inputsمتنفذهاش غير لما تعمل على كل ال
                 'Email' => 'required|unique:my__parents,Email,'.$this->id,
@@ -69,7 +69,7 @@ class AddParent extends Component
                 'Religion_Father_id' => 'required',
                 'Address_Father' => 'required',
             ]);
-            $this->currentStep = 2; //  بدل ماهو 1 خليه 2 over ride اعمل
+            $this->currentStep = 2; // do override 2
         }
 
 
@@ -87,7 +87,7 @@ class AddParent extends Component
         }
 
     //secondStepSubmit
-    public function secondStepSubmit() //الخطوة التالته
+    public function secondStepSubmit() //third step
     {
         $this->validate([
             'Name_Mother' => 'required',

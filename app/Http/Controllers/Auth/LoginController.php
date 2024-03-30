@@ -22,7 +22,7 @@ class LoginController extends Controller
     }
 
 
-    public function loginForm($type='admin') //admin is default
+    public function loginForm($type='admin')
     {
         return view('auth.login', compact('type'));
     }
@@ -40,16 +40,16 @@ class LoginController extends Controller
     public function logout(Request $request, $type)
     {
         $locale = Session::get('locale');
-    
+
         Auth::guard($type)->logout();
-    
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-    
+
         Session::put('locale', $locale);
-    
+
         return redirect('/');
     }
-    
+
 
 }

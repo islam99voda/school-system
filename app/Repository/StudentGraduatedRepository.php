@@ -44,10 +44,10 @@ class StudentGraduatedRepository implements StudentGraduatedRepositoryInterface
         return redirect()->route('Graduated.index');
     }
 
-    
+
     public function ReturnData($request)
     {
-        student::onlyTrashed()->where('id', $request->id)->first()->restore(); //زي ماكان null رجعله لأصله 
+        student::onlyTrashed()->where('id', $request->id)->first()->restore();
         toastr()->success(trans('messages.success'));
         return redirect()->back();
     }

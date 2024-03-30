@@ -50,22 +50,18 @@
                                 <td>{{ $Grade->Name }}</td>
                                 <td>{{ $Grade->Notes }}</td>
                                 <td>
-                                <!--زرار موديل تعديل مرحلة-->
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                         data-target="#edit"
                                         title="{{ trans('Grades_trans.Edit') }}"><i class="fa fa-edit"></i></button>
-                                <!--زرار موديل حذف مرحلة-->
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#delete{{ $Grade->id }}"
                                         title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
 
-                            <!-- موديل تعديل مرحلة -->
-                            @include('pages.Grades.edit_modal') 
+                            @include('pages.Grades.edit_modal')
 
-                             <!-- موديل حذف مرحلة -->
-                             @include('pages.Grades.delete_modal') 
+                             @include('pages.Grades.delete_modal')
                         @endforeach
                 </table>
             </div>
@@ -74,8 +70,7 @@
 </div>
 
 
-<!-- موديل أضافة مرحلة -->
-@include('pages.Grades.add_modal') 
+@include('pages.Grades.add_modal')
 
 
 </div>

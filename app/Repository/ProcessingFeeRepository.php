@@ -31,28 +31,26 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
         return view('pages.ProcessingFee.edit',compact('ProcessingFee'));
     }
 
-    public function store($request) //عملية استبعاد الرسوم
+    public function store($request)
     {
         DB::beginTransaction();
 
         try {
-            // حفظ البيانات في جدول معالجة الرسوم
             $ProcessingFee = new ProcessingFee();
             $ProcessingFee->date = date('Y-m-d');
             $ProcessingFee->student_id = $request->student_id;
-            $ProcessingFee->amount = $request->Debit; //المبلغ المستبعد
+            $ProcessingFee->amount = $request->Debit;
             $ProcessingFee->description = $request->description;
             $ProcessingFee->save();
 
 
-            // حفظ البيانات في جدول حساب الطلاب
             $students_accounts = new StudentAccount();
             $students_accounts->date = date('Y-m-d');
             $students_accounts->type = 'ProcessingFee';
             $students_accounts->student_id = $request->student_id;
             $students_accounts->processing_id = $ProcessingFee->id;
-            $students_accounts->Debit = 0.00; //مدين
-            $students_accounts->credit = $request->Debit; //دائن للإثبات فقط
+            $students_accounts->Debit = 0.00;
+            $students_accounts->credit = $request->Debit;
             $students_accounts->description = $request->description;
             $students_accounts->save();
 
@@ -71,7 +69,6 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
         DB::beginTransaction();
 
         try {
-            // تعديل البيانات في جدول معالجة الرسوم
             $ProcessingFee = ProcessingFee::findorfail($request->id);;
             $ProcessingFee->date = date('Y-m-d');
             $ProcessingFee->student_id = $request->student_id;
@@ -79,7 +76,6 @@ class ProcessingFeeRepository implements ProcessingFeeRepositoryInterface
             $ProcessingFee->description = $request->description;
             $ProcessingFee->save();
 
-            // تعديل البيانات في جدول حساب الطلاب
             $students_accounts = StudentAccount::where('processing_id',$request->id)->first();;
             $students_accounts->date = date('Y-m-d');
             $students_accounts->type = 'ProcessingFee';

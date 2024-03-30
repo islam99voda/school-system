@@ -1,4 +1,3 @@
-<!-- موديل تعديل مرحلة -->
 <div class="modal fade" id="edit" tabindex="-1" role="dialog"
 aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -19,19 +18,19 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
                 {{ method_field('patch') }}
                 @csrf
                 <div class="row">
-                    <div class="col"> <!--اسم المرحلة بالعربي-->
+                    <div class="col">
                         <label for="Name" class="mr-sm-2"> {{ trans('Grades_trans.stage_name_ar') }}:</label>
                         <input id="Name" type="text" name="Name" class="form-control" value="{{ $Grade->getTranslation('Name', 'ar') }}" required>
                         <input id="id" type="hidden" name="id" class="form-control" value="{{ $Grade->id }}">
                     </div>
 
-                    <div class="col"> <!--اسم المرحلة بالانجليزي-->
-                        <label for="Name_en" class="mr-sm-2">{{ trans('Grades_trans.stage_name_en') }}:</label> 
+                    <div class="col">
+                        <label for="Name_en" class="mr-sm-2">{{ trans('Grades_trans.stage_name_en') }}:</label>
                         <input type="text" class="form-control" value="{{ $Grade->getTranslation('Name', 'en') }}" name="Name_en" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <labelfor="exampleFormControlTextarea1">{{ trans('Grades_trans.Notes') }}:</label> <!--الملاحظات-->
+                    <labelfor="exampleFormControlTextarea1">{{ trans('Grades_trans.Notes') }}:</label>
                     <textarea class="form-control" name="Notes" id="exampleFormControlTextarea1"rows="3">{{ $Grade->Notes }}</textarea>
                 </div>
                 <br><br>

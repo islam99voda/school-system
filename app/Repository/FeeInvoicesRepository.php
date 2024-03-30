@@ -23,9 +23,9 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
 
     public function show( $id)
     {
-        $student = Student::findorfail($id); //هات الطالب اللي اختاره 
-        $fees = Fee::where('Classroom_id',$student->Classroom_id)->get(); //لما صف الطالب يساوي الصف اللي في جدول الفواتير هات بيانات الرسوم
-        return view('pages.Fees_Invoices.add',compact('student','fees')); //الطالب وبيانات الصف بتاعه id هيروح معاه
+        $student = Student::findorfail($id);
+        $fees = Fee::where('Classroom_id',$student->Classroom_id)->get();
+        return view('pages.Fees_Invoices.add',compact('student','fees'));
     }
 
     public function edit($id)
@@ -35,13 +35,13 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
         return view('pages.Fees_Invoices.edit',compact('fee_invoices','fees'));
     }
 
-    
+
     public function store($request)
     {
         $List_Fees = $request->List_Fees;
-    
+
         DB::beginTransaction();
-    
+
         try {
             foreach ($List_Fees as $List_Fee) {
                 $Fees = Fee_invoice::firstOrCreate([ //dont repeat insert
@@ -60,13 +60,13 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
                 $StudentAccount->type = 'invoice';
                 $StudentAccount->fee_invoice_id = $Fees->id;
                 $StudentAccount->student_id = $List_Fee['student_id'];
-                $StudentAccount->Debit = $List_Fee['amount']; //مدين عشان اثبت الفاتورة اني عايز من الطالب المبلغ دا
+                $StudentAccount->Debit = $List_Fee['amount'];
                 $StudentAccount->credit = 0.00;
                 $StudentAccount->description = $List_Fee['description'];
                 $StudentAccount->save();
             }
             DB::commit();
-    
+
             toastr()->success(trans('messages.success'));
             return redirect()->route('Fees_Invoices.index');
         } catch (\Exception $e) {
@@ -75,7 +75,7 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
         }
     }
 
-    
+
 
 
 
@@ -83,14 +83,14 @@ class FeeInvoicesRepository implements FeeInvoicesRepositoryInterface
     {
         DB::beginTransaction();
         try {
-            // تعديل البيانات في جدول فواتير الرسوم الدراسية
+
             $Fees = Fee_invoice::findorfail($request->id);
             $Fees->fee_id = $request->fee_id;
             $Fees->amount = $request->amount;
             $Fees->description = $request->description;
             $Fees->save();
 
-            // تعديل البيانات في جدول حسابات الطلاب
+            
             $StudentAccount = StudentAccount::where('fee_invoice_id',$request->id)->first();
             $StudentAccount->Debit = $request->amount;
             $StudentAccount->description = $request->description;
