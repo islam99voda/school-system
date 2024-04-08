@@ -4,6 +4,7 @@ use App\Http\Models\Student;
 use App\Http\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\Teachers\dashboard\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,15 @@ Route::group(
 //        $count_sections =  $ids->count();
 //        $count_students = DB::table('students')->whereIn('section_id',$ids)->count();
         return view('pages.Teachers.dashboard.dashboard',$data);
+    });
+
+    Route::group(['namespace' => 'Teachers\dashboard'], function () {
+        //==============================students============================
+     Route::get('student','StudentController@index')->name('student.index');
+     Route::get('sections','StudentController@sections')->name('sections');
+     Route::post('attendance','StudentController@attendance')->name('attendance');
+     Route::post('edit_attendance','StudentController@editAttendance')->name('attendance.edit');
+
     });
 
 });

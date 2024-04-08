@@ -10,7 +10,7 @@ use App\Repository\StudentRepositoryInterface;
 
 class StudentController extends Controller
 {
-    
+
     protected $Student; //interfaceاللي جوه ال functionsهخزن فيها كل ال
 
     public function __construct(StudentRepositoryInterface $Student)
@@ -20,14 +20,14 @@ class StudentController extends Controller
 
 
 
-    
+
     public function index()
     {
        return $this->Student->Get_Student();
     }
-    
 
-    
+
+
     public function create()
     {
        return $this->Student->Create_Student();
@@ -47,10 +47,10 @@ class StudentController extends Controller
     public function show($id){
 
         return $this->Student->Show_Student($id);
-   
+
        }
 
-    
+
 
 
        public function edit($id)
@@ -66,14 +66,14 @@ class StudentController extends Controller
            return $this->Student->Update_Student($request);
        }
 
-    
+
 
 
        public function destroy(Request $request)
        {
            return $this->Student->Delete_Student($request);
        }
-    
+
     public function Get_classrooms($id)
     {
        return $this->Student->Get_classrooms($id);
@@ -104,7 +104,7 @@ class StudentController extends Controller
     {
         return $this->Student->Open_attachment($studentsname, $filename);
     }
-    
 
-    
+
+
 }

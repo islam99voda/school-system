@@ -8,7 +8,7 @@
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>برنامج مورا سوفت لادارة المدارس</title>
+    <title>برنامج ادارة مدرسة</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico" />
@@ -66,7 +66,7 @@ login-->
                             <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول ادمن</h3>
                         @endif
                         <form method="POST" action="{{route('login')}}">
-                            @csrf                            
+                            @csrf
                             <div class="section-field mb-20">
                                 <label class="mb-10" for="name">البريدالالكتروني*</label>
                                 <input id="email" type="email"
