@@ -1,4 +1,4 @@
-<!-- edit_attendance Student -->
+<!-- Deleted inFormation Student -->
 <div class="modal fade" id="edit_attendance{{$student->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">

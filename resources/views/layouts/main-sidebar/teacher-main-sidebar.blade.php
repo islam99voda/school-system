@@ -14,13 +14,13 @@
 
         <!-- الاقسام-->
         <li>
-            <a href=""><i class="fas fa-chalkboard"></i><span
+            <a href="{{route('sections')}}"><i class="fas fa-chalkboard"></i><span
                     class="right-nav-text">الاقسام</span></a>
         </li>
 
         <!-- الطلاب-->
         <li>
-            <a href=""><i class="fas fa-user-graduate"></i><span
+            <a href="{{route('student.index')}}"><i class="fas fa-user-graduate"></i><span
                     class="right-nav-text">الطلاب</span></a>
         </li>
 
@@ -40,7 +40,7 @@
                 <div class="clearfix"></div>
             </a>
             <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
-                <li><a href="#">تقرير الحضور والغياب</a></li>
+                <li><a href="{{route('attendance.report')}}">تقرير الحضور والغياب</a></li>
                 <li><a href="#">تقرير الامتحانات</a></li>
             </ul>
 

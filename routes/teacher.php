@@ -26,14 +26,9 @@ Route::group(
 
     //==============================dashboard============================
     Route::get('/teacher/dashboard', function () {
-
         $ids = Teacher::findorFail(auth()->user()->id)->Sections()->pluck('section_id');
         $data['count_sections']= $ids->count();
         $data['count_students']= Student::whereIn('section_id',$ids)->count();
-
-//        $ids = DB::table('teacher_section')->where('teacher_id',auth()->user()->id)->pluck('section_id');
-//        $count_sections =  $ids->count();
-//        $count_students = DB::table('students')->whereIn('section_id',$ids)->count();
         return view('pages.Teachers.dashboard.dashboard',$data);
     });
 
@@ -43,6 +38,8 @@ Route::group(
      Route::get('sections','StudentController@sections')->name('sections');
      Route::post('attendance','StudentController@attendance')->name('attendance');
      Route::post('edit_attendance','StudentController@editAttendance')->name('attendance.edit');
+     Route::get('attendance_report','StudentController@attendanceReport')->name('attendance.report');
+     Route::post('attendance_report','StudentController@attendanceSearch')->name('attendance.search');
 
     });
 
