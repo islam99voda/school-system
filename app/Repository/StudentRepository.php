@@ -29,7 +29,7 @@ class StudentRepository implements StudentRepositoryInterface{
         $data['Genders'] = Gender::all();
         $data['nationals'] = Nationalitie::all();
         $data['bloods'] = Type_Blood::all();
-        return view('pages.Students.add',$data); //compactافضل من ال
+        return view('pages.Students.add',$data);
      }
 
      public function Edit_Student($id)

@@ -1,6 +1,5 @@
 <!--تعديل قسم جديد -->
-<div class="modal fade"
-id="edit{{ $list_Sections->id }}"
+<div class="modal fade" id="edit{{ $list_Sections->id }}"
 tabindex="-1" role="dialog"
 aria-labelledby="exampleModalLabel"
 aria-hidden="true">
@@ -89,7 +88,7 @@ aria-hidden="true">
                        @if ($list_Sections->Status === 1)
                            <input type="checkbox" checkedclass="form-check-input" name="Status" id="exampleCheck1">
                        @else
-                           <input type="checkbox"class="form-check-input"name="Status"id="exampleCheck1">
+                           <input type="checkbox" class="form-check-input"name="Status"id="exampleCheck1">
                        @endif
                        <label
                            class="form-check-label"

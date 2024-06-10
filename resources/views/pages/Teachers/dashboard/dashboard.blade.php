@@ -154,7 +154,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @forelse(\App\Models\Student::latest()->take(5)->get() as $student)
+                                                @forelse(\App\Http\Models\Student::latest()->take(5)->get() as $student)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$student->name}}</td>
@@ -188,7 +188,7 @@
                                                 </tr>
                                                 </thead>
 
-                                                @forelse(\App\Models\Teacher::latest()->take(5)->get() as $teacher)
+                                                @forelse(\App\Http\Models\Teacher::latest()->take(5)->get() as $teacher)
                                                     <tbody>
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
@@ -221,7 +221,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @forelse(\App\Models\My_Parent::latest()->take(5)->get() as $parent)
+                                                @forelse(\App\Http\Models\My_Parent::latest()->take(5)->get() as $parent)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$parent->Name_Father}}</td>
@@ -256,7 +256,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @forelse(\App\Models\Fee_invoice::latest()->take(10)->get() as $section)
+                                                @forelse(\App\Http\Models\Fee_invoice::latest()->take(10)->get() as $section)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$section->invoice_date}}</td>

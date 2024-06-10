@@ -42,11 +42,11 @@ Route::group([
 ], function () {
 
     // ==============================Admin dashboard============================
-   
+
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     // ==============================dashboard============================
-   
-   
+
+
     Route::namespace('Grades')->group(function () {
         Route::resource('Grades', 'GradeController');
     });
@@ -95,9 +95,8 @@ Route::group([
         Route::post('/indirect', 'OnlineClasseController@storeIndirect')->name('indirect.store');
         Route::resource('online_classes', 'OnlineClasseController');
         Route::get('download_file/{filename}', 'LibraryController@downloadAttachment')->name('downloadAttachment');
-        Route::resource('library', 'LibraryController');        
+        Route::resource('library', 'LibraryController');
         Route::get('file/{filename}', 'LibraryController@show')->name('file.show');
-
     });
 
     // ==============================Subjects============================
@@ -118,7 +117,7 @@ Route::group([
 
     //==============================Setting============================
     Route::resource('settings', 'SettingController');
-    
+
 });
 // Auth::routes();
 

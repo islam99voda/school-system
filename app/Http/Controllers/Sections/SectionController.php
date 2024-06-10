@@ -55,7 +55,6 @@ class SectionController extends Controller
 
     public function update(StoreSections $request)
     {
-
       try {
         $validated = $request->validated();
         $Sections = Section::findOrFail($request->id);

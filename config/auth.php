@@ -19,7 +19,7 @@ return [
     */
 
 
-    
+
 
     'defaults' => [
         'guard' => 'web',
@@ -42,19 +42,19 @@ return [
     | Supported: "session", "token"
     |
 
-        $_SESSION = [     
+        $_SESSION = [
             "guard" => [
                 "key" => value,
                 "key" => value,
                 "key" => value,
             ],
-            
+
             "user" => [
                 "id" => 1,
                 "name" => islam,
                 "email" => islam.voda99.com,
             ],
-            
+
             "admin" => [
                 "id" => 1,
                 "name" => ahmed,
@@ -71,7 +71,7 @@ return [
 
         'student' => [
             'driver' => 'session',
-            'provider' => 'students',
+            'provider' => 'students', 
         ],
 
         'teacher' => [

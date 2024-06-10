@@ -28,7 +28,6 @@ class ClassroomController extends Controller
         $List_Classes = $request->List_Classes;
 
         try {
-
             $validated = $request->validated();
             foreach ($List_Classes as $List_Class) {
 
