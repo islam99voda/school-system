@@ -23,7 +23,7 @@ class section extends Model
     }
 
     // لعلاقة الاقسام مع المعلمين pivot tableجدول ال
-    public function teachers() 
+    public function teachers()
     {
         return $this->belongsToMany('App\Http\Models\Teacher','teacher_section'); //teacher_sectionاللي اسمه Pivot table لازم احط اسم ال
     }

@@ -41,7 +41,7 @@ class StudentController extends Controller
                 }
 
                 Attendance::updateorCreate( //if the data exist doing update else doing insert
-                [ //condition
+                [
                     'student_id' => $studentid,
                     'attendence_date' => $attenddate,
                 ],
@@ -91,24 +91,21 @@ class StudentController extends Controller
         return view('pages.Teachers.dashboard.students.attendance_report', compact('students'));
     }
 
-
-    //search attendance for students
     public function attendanceSearch(Request $request)
     {
         $request->validate([
-            'from' => 'required|date_format:m-d-Y',
-            'to' => 'required|date_format:m-d-Y|after_or_equal:from'
+            'from'  => 'required|date|date_format:Y-m-d',
+            'to' => 'required|date|date_format:Y-m-d|after_or_equal:from'
         ], [
-            'to.after_or_equal' => 'تاريخ النهاية لابد أن يكون أكبر من أو يساوي تاريخ البداية',
-            'from.date_format' => 'صيغة التاريخ يجب أن تكون mm-dd-yyyy',
-            'to.date_format' => 'صيغة التاريخ يجب أن تكون mm-dd-yyyy',
+            'to.after_or_equal' => 'تاريخ النهاية لابد ان اكبر من تاريخ البداية او يساويه',
+            'from.date_format' => 'صيغة التاريخ يجب ان تكون yyyy-mm-dd',
+            'to.date_format' => 'صيغة التاريخ يجب ان تكون yyyy-mm-dd',
         ]);
 
         $ids = DB::table('teacher_section')->where('teacher_id', auth()->user()->id)->pluck('section_id');
         $students = Student::whereIn('section_id', $ids)->get();
 
         if ($request->student_id == "all") {
-
             $Students = Attendance::whereBetween('attendence_date', [$request->from, $request->to])->get();
             return view('pages.Teachers.dashboard.students.attendance_report', compact('Students', 'students'));
         } else {

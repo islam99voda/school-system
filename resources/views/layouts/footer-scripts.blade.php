@@ -95,9 +95,9 @@
             var Grade_id = $('select[name="Grade_id"]').val();
             var Classroom_id = $('select[name="Classroom_id"]').val();
             var section_id = $('select[name="section_id"]').val();
-            
+
             var languagePreference = window.location.pathname.split('/')[1]; // Extract language from URL
-            
+
             if (Grade_id && Classroom_id && section_id) {
                 $.ajax({
                     url: "{{ url('Get_students_table') }}/" + Grade_id + '/' + Classroom_id + '/' + section_id,
@@ -112,11 +112,11 @@
                         $('#students-table-body').empty(); // Clear existing table body
                         var count = 0; // Initialize count variable
                         $.each(data, function (key, student) {
-                            count++; // Increment count 
+                            count++; // Increment count
                             // Get the student name based on the language in url
                             $('#students-table-body').append(
                                 '<tr>' +
-                                    '<td>' + count + '</td>' + 
+                                    '<td>' + count + '</td>' +
                                     '<td>' + (languagePreference === 'en' ? student.name.en : student.name.ar) + '</td>' +
                                     '<td>' + student.email + '</td>' +
                                     '<td>' + (languagePreference === 'en' ? student.gender.Name.en : student.gender.Name.ar) + '</td>' +
