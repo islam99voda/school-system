@@ -16,7 +16,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
-    
+
     //url routes
     public const HOME = '/dashboard';
     public const STUDENT = '/student/dashboard';
@@ -68,6 +68,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/teacher.php'));
+
+            Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/ajax.php'));
     }
 
     /**

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Teachers\dashboard;
 
 use App\Http\Models\Grade;
 use App\Http\Models\Quizze;
+use App\Http\Models\section;
 use App\Http\Models\Subject;
 use Illuminate\Http\Request;
+use App\Http\Models\Question;
 use App\Http\Models\Classroom;
 use App\Http\Controllers\Controller;
-use App\Http\Models\section;
 
 class QuizzController extends Controller
 {
@@ -75,6 +76,13 @@ class QuizzController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $questions = Question::where('quizze_id',$id)->get(); //to get all questions of this quizz
+        $quizz = Quizze::findorFail($id);
+        return view('pages.Teachers.dashboard.Questions.index',compact('questions','quizz'));
+    }
+
 
     public function destroy($id)
     {
@@ -87,16 +95,4 @@ class QuizzController extends Controller
         }
     }
 
-    public function getClassrooms($id)
-    {
-        $list_classes = Classroom::where("Grade_id", $id)->pluck("Name_Class", "id");
-        return $list_classes;
-    }
-
-
-    public function Get_Sections($id){
-
-        $list_sections = section::where("Class_id", $id)->pluck("Name_Section", "id");
-        return $list_sections;
-    }
 }
