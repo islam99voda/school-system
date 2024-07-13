@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Students\dashboard;
 use App\Http\Models\Quizze;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ExamsController extends Controller
 {
@@ -21,7 +22,8 @@ class ExamsController extends Controller
 
     public function show($quizze_id)
     {
-        return $quizze_id;
+        $student_id = Auth::user()->id;
+        return view('pages.Students.dashboard.exams.show',compact('quizze_id','student_id'));
     }
 
 }
