@@ -36,7 +36,7 @@ class ShowQuestion extends Component
             $degree->save();
         } else {
 
-            // update when go to next question
+            // if student try to do refresh page after answer a question
             if ($stuDegree->question_id >= $this->data[$this->counter]->id) {
                 $stuDegree->score = 0;
                 $stuDegree->abuse = '1';
