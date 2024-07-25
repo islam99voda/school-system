@@ -34,9 +34,4 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-
-    public function destroy($id)
-    {
-        //
-    }
 }

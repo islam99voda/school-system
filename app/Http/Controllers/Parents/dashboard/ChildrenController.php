@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Models\Attendance;
 use App\Http\Models\Degree;
 use App\Http\Models\Fee_invoice;
+use App\Http\Models\My_Parent;
 use App\Http\Models\ReceiptStudent;
+use App\Http\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Models\Student;
+use Illuminate\Support\Facades\Hash;
 
 class ChildrenController extends Controller
 {
@@ -22,6 +24,7 @@ class ChildrenController extends Controller
 
     public function results($id)
     {
+
         $student = Student::findorFail($id);
 
         if ($student->parent_id !== auth()->user()->id) {
@@ -31,11 +34,12 @@ class ChildrenController extends Controller
         $degrees = Degree::where('student_id', $id)->get();
 
         if ($degrees->isEmpty()) {
-            toastr()->error('لا يوجد نتائج لهذا الطالب');
+            toastr()->error('لا توجد نتائج لهذا الطالب');
             return redirect()->route('sons.index');
         }
 
         return view('pages.parents.degrees.index', compact('degrees'));
+
     }
 
 
@@ -95,6 +99,32 @@ class ChildrenController extends Controller
             return redirect()->route('sons.fees');
         }
         return view('pages.parents.Receipt.index', compact('receipt_students'));
+
+    }
+
+
+    public function profile()
+    {
+        $information = My_Parent::findorFail(auth()->user()->id);
+        return view('pages.parents.profile', compact('information'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $information = My_Parent::findorFail($id);
+
+        if (!empty($request->password)) {
+            $information->Name_Father = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
+            $information->password = Hash::make($request->password);
+            $information->save();
+        } else {
+            $information->Name_Father = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
+            $information->save();
+        }
+        toastr()->success(trans('messages.Update'));
+        return redirect()->back();
+
 
     }
 
