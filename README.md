@@ -1,6 +1,10 @@
 
-# Multi Auth 
-the system supports multi-authentication for Different roles, each role has specific permissions and functionalities:
+# Educational System 
+The system provides multiple roles, each role has specific permissions and functionalities:
+Admins: Full control over the system, including user management, report generation, and overall system configuration.
+Teachers: Create and manage quizzes, handle attendance records, manage student files, and schedule Zoom meetings.
+Students: Solve quizzes and check their grades and attendance.
+Parents: View their children's fees and quiz results and attendance.
 
 ![1](https://github.com/user-attachments/assets/05e7b3b1-bb29-4340-849f-9d2aa1559190)
 
@@ -10,7 +14,7 @@ the system supports multi-authentication for Different roles, each role has spec
 ![3](https://github.com/user-attachments/assets/e239e21c-4dc7-46ac-9ff6-c2212cb91b88)
 
 
-# multi language 
+# multi language support
 The system supports multiple languages, allowing users to select their preferred language: English or Arabic.
 ![4](https://github.com/user-attachments/assets/a21cba54-4fc8-4bac-b29d-c142884ae06d)
 
