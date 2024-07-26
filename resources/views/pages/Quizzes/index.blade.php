@@ -2,13 +2,13 @@
 @section('css')
     
 @section('title')
-    قائمة الاختبارات
+    {{(__('definitions.quizzes_list'))}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    قائمة الاختبارات
+    {{(__('definitions.quizzes_list'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -22,7 +22,7 @@
                         <div class="card card-statistics h-100">
                             <div class="card-body">
                                 <a href="{{route('Quizzes.create')}}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">اضافة اختبار جديد</a><br><br>
+                                   aria-pressed="true">{{ trans('definitions.Add_new_Quiz') }}</a><br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -30,12 +30,12 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>اسم الاختبار</th>
-                                            <th>اسم المعلم</th>
-                                            <th>المرحلة الدراسية</th>
-                                            <th>الصف الدراسي</th>
-                                            <th>القسم</th>
-                                            <th>العمليات</th>
+                                            <th>{{ trans('definitions.quizze_name') }}</th>
+                                            <th>{{ trans('definitions.teacher_name') }}</th>
+                                            <th>{{ trans('definitions.grade') }}</th>
+                                            <th>{{ trans('definitions.classroom') }}</th>
+                                            <th>{{ trans('definitions.section') }}</th>
+                                            <th>{{ trans('definitions.settings') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>

@@ -2,13 +2,13 @@
 @section('css')
     
 @section('title')
-    {{ trans('Sections_trans.title_page') }}: الحضور والغياب
+    {{ trans('Sections_trans.title_page') }}: {{(__('definitions.attendance'))}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    {{ trans('Sections_trans.title_page') }}: الحضور والغياب
+    {{ trans('Sections_trans.title_page') }}: {{(__('definitions.attendance'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -119,5 +119,4 @@
                 });
 
             </script>
-
 @endsection

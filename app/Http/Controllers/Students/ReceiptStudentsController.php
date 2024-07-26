@@ -20,12 +20,6 @@ class ReceiptStudentsController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
         return $this->Receipt->store($request);

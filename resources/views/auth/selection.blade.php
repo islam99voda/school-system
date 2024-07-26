@@ -20,9 +20,6 @@
     <!-- css -->
     <link href="{{ URL::asset('assets/css/rtl.css') }}" rel="stylesheet">
 
-
-
-
 </head>
 
 <body>
@@ -36,18 +33,26 @@
 
                     <div style="border-radius: 15px;" class="col-lg-8 col-md-8 bg-white">
                         <div class="login-fancy pb-40 clearfix">
-                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">حدد طريقة الدخول</h3>
+                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">اختر نوع المستخدم</h3>
                             <div class="form-inline">
+                                
                                 <a class="btn btn-default col-lg-3" title="طالب" href="{{route('login.show','student')}}">
+                                    <h3>طالب</h3>
                                     <img alt="user-img" width="100px;" src="{{asset('assets/images/student.png')}}">
                                 </a>
+                               
                                 <a class="btn btn-default col-lg-3" title="ولي امر" href="{{route('login.show','parent')}}">
+                                    <h3>ولي أمر</h3>
                                     <img alt="user-img" width="100px;" src="{{asset('assets/images/parent.png')}}">
                                 </a>
+                               
                                 <a class="btn btn-default col-lg-3" title="معلم" href="{{route('login.show','teacher')}}">
+                                    <h3>مُعلم</h3>
                                     <img alt="user-img" width="100px;" src="{{asset('assets/images/teacher.png')}}">
                                 </a>
+                              
                                 <a class="btn btn-default col-lg-3" title="ادمن" href="{{route('login.show','admin')}}">
+                                    <h3>مدير</h3>
                                     <img alt="user-img" width="100px;" src="{{asset('assets/images/admin.png')}}">
                                 </a>
                             </div>

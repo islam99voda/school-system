@@ -2,13 +2,13 @@
 @section('css')
     
 @section('title')
-    الرسوم الدراسية
+   {{(__('definitions.fees'))}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    الرسوم الدراسية
+   {{(__('di'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -22,7 +22,7 @@
                         <div class="card card-statistics h-100">
                             <div class="card-body">
                                 <a href="{{route('Fees.create')}}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">اضافة رسوم جديدة</a><br><br>
+                                   aria-pressed="true">{{ trans('definitions.Add_new_Fees') }}</a><br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -30,13 +30,15 @@
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
-                                            <th>الاسم</th>
-                                            <th>المبلغ</th>
-                                            <th>المرحلة الدراسية</th>
-                                            <th>الصف الدراسي</th>
-                                            <th>السنة الدراسية</th>
-                                            <th>ملاحظات</th>
-                                            <th>العمليات</th>
+                                            <th>
+                                                
+                                            </th>
+                                            <th>{{ trans('definitions.amount') }}</th>
+                                            <th>{{ trans('definitions.Grade') }}</th>
+                                            <th>{{ trans('definitions.classroom') }}</th>
+                                            <th>{{ trans('definitions.school_year') }}</th>
+                                            <th>{{ trans('definitions.notes') }}</th>
+                                            <th>{{ trans('definitions.settings') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>

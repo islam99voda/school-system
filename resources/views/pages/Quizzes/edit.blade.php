@@ -1,14 +1,14 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    
 @section('title')
-    تعديل اختبار {{$quizz->name}}
+    {{ trans('definitions.edit') }}{{$quizz->name}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    تعديل اختبار {{$quizz->name}}
+    {{ trans('definitions.edit') }}{{$quizz->name}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -36,13 +36,13 @@
                                 <div class="form-row">
 
                                     <div class="col">
-                                        <label for="title">اسم الاختبار باللغة العربية</label>
+                                        <label for="title">{{ trans('definitions.name_arabic') }}</label>
                                         <input type="text" name="Name_ar" value="{{$quizz->getTranslation('name','ar')}}" class="form-control">
                                         <input type="hidden" name="id" value="{{$quizz->id}}">
                                     </div>
 
                                     <div class="col">
-                                        <label for="title">اسم الاختبار باللغة الانجليزية</label>
+                                        <label for="title">{{ trans('definitions.name_english') }}</label>
                                         <input type="text" name="Name_en" value="{{$quizz->getTranslation('name','en')}}" class="form-control">
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="Grade_id">المادة الدراسية : <span class="text-danger">*</span></label>
+                                            <label for="Grade_id">{{ trans('definitions.subject_name') }} : <span class="text-danger">*</span></label>
                                             <select class="custom-select mr-sm-2" name="subject_id">
                                                 @foreach($subjects as $subject)
                                                     <option value="{{ $subject->id }}" {{$subject->id == $quizz->subject_id ? "selected":""}}>{{ $subject->name }}</option>
@@ -63,7 +63,7 @@
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="Grade_id">اسم المعلم : <span class="text-danger">*</span></label>
+                                            <label for="Grade_id">{{ trans('definitions.teacher_name') }} : <span class="text-danger">*</span></label>
                                             <select class="custom-select mr-sm-2" name="teacher_id">
                                                 @foreach($teachers as $teacher)
                                                     <option  value="{{ $teacher->id }}" {{$teacher->id == $quizz->teacher_id ? "selected":""}}>{{ $teacher->Name }}</option>

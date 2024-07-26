@@ -1,14 +1,14 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+   
 @section('title')
-    قائمة المواد الدراسية
+    {{(__('definitions.subjects'))}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    قائمة المواد الدراسية
+    {{(__('definitions.subjects'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -22,7 +22,7 @@
                         <div class="card card-statistics h-100">
                             <div class="card-body">
                                 <a href="{{route('subjects.create')}}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">اضافة مادة جديدة</a><br><br>
+                                   aria-pressed="true">{{(__('definitions.add_new_subject'))}}</a><br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -30,11 +30,11 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>اسم المادة</th>
-                                            <th>المرحلة الدراسية</th>
-                                            <th>الصف الدراسي</th>
-                                            <th>اسم المعلم</th>
-                                            <th>العمليات</th>
+                                            <th>{{(__('definitions.name_subject'))}}</th>
+                                            <th>{{(__('definitions.Grade'))}}</th>
+                                            <th>{{(__('definitions.classroom'))}}</th>
+                                            <th>{{(__('definitions.teacher_name'))}}</th>
+                                            <th>{{(__('definitions.settings'))}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>

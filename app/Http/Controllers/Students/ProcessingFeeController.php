@@ -21,13 +21,6 @@ class ProcessingFeeController extends Controller
         return $this->Processing->index();
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
         return $this->Processing->store($request);

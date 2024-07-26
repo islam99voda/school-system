@@ -41,7 +41,7 @@
             <div class="page-title" >
                 <div class="row">
                     <div class="col-sm-6" >
-                        <h4 class="mb-0" style="font-family: 'Cairo', sans-serif">لوحة تحكم الأدمن</h4>
+                        <h4 class="mb-0" style="font-family: 'Cairo', sans-serif">{{trans('definitions.admin_dashboard')}}</h4>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
@@ -61,12 +61,12 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد الطلاب</p>
+                                    <p class="card-text text-dark">{{trans('definitions.number_of_students')}}</p>
                                     <h4>{{\App\Http\Models\Student::count()}}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('Students.index')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
+                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('Students.index')}}" target="_blank"><span class="text-danger">{{trans('definitions.show_data')}}</span></a>
                             </p>
                         </div>
                     </div>
@@ -81,12 +81,12 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد المعلمين</p>
+                                    <p class="card-text text-dark">{{trans('definitions.count_of_teachers')}}</p>
                                     <h4>{{\App\Http\Models\Teacher::count()}}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('Teachers.index')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
+                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('Teachers.index')}}" target="_blank"><span class="text-danger">{{trans('definitions.show_data')}}</span></a>
                             </p>
                         </div>
                     </div>
@@ -101,12 +101,12 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد اولياء الامور</p>
+                                    <p class="card-text text-dark">{{trans('definitions.count_of_teachers')}}</p>
                                     <h4>{{\App\Http\Models\My_Parent::count()}}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('add_parent')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
+                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('add_parent')}}" target="_blank"><span class="text-danger">{{trans('definitions.show_data')}}</span></a>
                             </p>
                         </div>
                     </div>
@@ -121,12 +121,12 @@
                                     </span>
                                 </div>
                                 <div class="float-right text-right">
-                                    <p class="card-text text-dark">عدد الفصول الدراسية</p>
+                                    <p class="card-text text-dark">{{trans('definitions.count_of_classes')}}</p>
                                     <h4>{{\App\Http\Models\Section::count()}}</h4>
                                 </div>
                             </div>
                             <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('Sections.index')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
+                                <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('Sections.index')}}" target="_blank"><span class="text-danger">{{trans('definitions.show_data')}}</span></a>
                             </p>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                             <div class="tab nav-border" style="position: relative;">
                                 <div class="d-block d-md-flex justify-content-between">
                                     <div class="d-block w-100">
-                                        <h5 style="font-family: 'Cairo', sans-serif" class="card-title">اخر العمليات علي النظام</h5>
+                                        <h5 style="font-family: 'Cairo', sans-serif" class="card-title">{{trans('definitions.last_operations')}}</h5>
                                     </div>
                                     <div class="d-block d-md-flex nav-tabs-custom">
                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -151,24 +151,24 @@
                                             <li class="nav-item">
                                                 <a class="nav-link active show" id="students-tab" data-toggle="tab"
                                                    href="#students" role="tab" aria-controls="students"
-                                                   aria-selected="true"> الطلاب</a>
+                                                   aria-selected="true">{{trans('definitions.students')}}</a>
                                             </li>
 
                                             <li class="nav-item">
                                                 <a class="nav-link" id="teachers-tab" data-toggle="tab" href="#teachers"
-                                                   role="tab" aria-controls="teachers" aria-selected="false">المعلمين
+                                                   role="tab" aria-controls="teachers" aria-selected="false">{{trans('definitions.teachers')}}
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
                                                 <a class="nav-link" id="parents-tab" data-toggle="tab" href="#parents"
-                                                   role="tab" aria-controls="parents" aria-selected="false">اولياء الامور
+                                                   role="tab" aria-controls="parents" aria-selected="false">{{trans('definitions.parents')}}
                                                 </a>
                                             </li>
 
                                             <li class="nav-item">
                                                 <a class="nav-link" id="fee_invoices-tab" data-toggle="tab" href="#fee_invoices"
-                                                   role="tab" aria-controls="fee_invoices" aria-selected="false">الفواتير
+                                                   role="tab" aria-controls="fee_invoices" aria-selected="false">{{trans('definitions.fee_invoices')}}
                                                 </a>
                                             </li>
 
@@ -184,13 +184,13 @@
                                                 <thead>
                                                 <tr  class="table-info text-danger">
                                                     <th>#</th>
-                                                    <th>اسم الطالب</th>
-                                                    <th>البريد الالكتروني</th>
-                                                    <th>النوع</th>
-                                                    <th>المرحلة الدراسية</th>
-                                                    <th>الصف الدراسي</th>
-                                                    <th>القسم</th>
-                                                    <th>تاريخ الاضافة</th>
+                                                    <th>{{trans('definitions.name')}}</th>
+                                                    <th>{{trans('definitions.email')}}</th>
+                                                    <th>{{trans('definitions.gender')}}</th>
+                                                    <th>{{trans('definitions.grade')}}</th>
+                                                    <th>{{trans('definitions.classroom')}}</th>
+                                                    <th>{{trans('definitions.section')}}</th>
+                                                    <th>{{trans('definitions.created_at')}}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -220,11 +220,11 @@
                                                 <thead>
                                                 <tr  class="table-info text-danger">
                                                     <th>#</th>
-                                                    <th>اسم المعلم</th>
-                                                    <th>النوع</th>
-                                                    <th>تاريخ التعين</th>
-                                                    <th>التخصص</th>
-                                                    <th>تاريخ الاضافة</th>
+                                                    <th>{{trans('definitions.name')}}</th>
+                                                    <th>{{trans('definitions.gender')}}</th>
+                                                    <th>{{trans('definitions.joining_date')}}</th>
+                                                    <th>{{trans('definitions.specialization')}}</th>
+                                                    <th>{{trans('definitions.created_at')}}</th>
                                                 </tr>
                                                 </thead>
 
@@ -238,7 +238,7 @@
                                                         <td>{{$teacher->specializations->Name}}</td>
                                                         <td class="text-success">{{$teacher->created_at}}</td>
                                                         @empty
-                                                            <td class="alert-danger" colspan="8">لاتوجد بيانات</td>
+                                                            <td class="alert-danger" colspan="8">{{trans('definitions.no_data_found')}}</td>
                                                     </tr>
                                                     </tbody>
                                                 @endforelse
@@ -253,11 +253,11 @@
                                                 <thead>
                                                 <tr  class="table-info text-danger">
                                                     <th>#</th>
-                                                    <th>اسم ولي الامر</th>
-                                                    <th>البريد الالكتروني</th>
-                                                    <th>رقم الهوية</th>
-                                                    <th>رقم الهاتف</th>
-                                                    <th>تاريخ الاضافة</th>
+                                                    <th>{{trans('definitions.name')}}</th>
+                                                    <th>{{trans('definitions.email')}}</th>
+                                                    <th>{{trans('definitions.national_id')}}</th>
+                                                    <th>{{trans('definitions.phone')}}</th>
+                                                    <th>{{trans('definitions.created_at')}}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -270,7 +270,7 @@
                                                         <td>{{$parent->Phone_Father}}</td>
                                                         <td class="text-success">{{$parent->created_at}}</td>
                                                         @empty
-                                                            <td class="alert-danger" colspan="8">لاتوجد بيانات</td>
+                                                            <td class="alert-danger" colspan="8">{{trans('definitions.no_data_found')}}</td>
                                                     </tr>
                                                 @endforelse
                                                 </tbody>
@@ -285,14 +285,14 @@
                                                 <thead>
                                                 <tr  class="table-info text-danger">
                                                     <th>#</th>
-                                                    <th>تاريخ الفاتورة</th>
-                                                    <th>اسم الطالب</th>
-                                                    <th>المرحلة الدراسية</th>
-                                                    <th>الصف الدراسي</th>
-                                                    <th>القسم</th>
-                                                    <th>نوع الرسوم</th>
-                                                    <th>المبلغ</th>
-                                                    <th>تاريخ الاضافة</th>
+                                                    <th>{{trans('definitions.created_at')}}</th>
+                                                    <th>{{trans('definitions.name')}}</th>
+                                                    <th>{{trans('definitions.grade')}}</th></th>
+                                                    <th>{{trans('definitions.classroom')}}</th>
+                                                    <th>{{trans('definitions.section')}}</th>
+                                                    <th>{{trans('definitions.fee_type')}}</th>
+                                                    <th>{{trans('definitions.amount')}}</th>
+                                                    <th>{{trans('definitions.created_at')}}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -305,7 +305,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td class="alert-danger" colspan="9">لاتوجد بيانات</td>
+                                                        <td class="alert-danger" colspan="9">{{trans('definitions.no_data_found')}}</td>
                                                     </tr>
                                                 @endforelse
                                                 </tbody>
@@ -321,14 +321,8 @@
                 </div>
             </div>
 
-            <livewire:calendar />
-
-            <!--=================================
- wrapper -->
-
             <!--=================================
  footer -->
-
             @include('layouts.footer')
         </div><!-- main content wrapper end-->
     </div>

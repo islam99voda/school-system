@@ -14,7 +14,7 @@
                     @method('DELETE')
                     <input type="hidden" name="id" value="{{$online_classe->id}}">
                     <input type="hidden" name="meeting_id" value="{{$online_classe->meeting_id}}">
-                    <h5 style="font-family: 'Cairo', sans-serif;">هل انت متاكد مع عملية الحذف ؟</h5>
+                    <h5 style="font-family: 'Cairo', sans-serif;">{{trans('definitions.confirm_delete')}}</h5>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Students_trans.Close')}}</button>
                         <button  class="btn btn-danger">{{trans('Students_trans.submit')}}</button>

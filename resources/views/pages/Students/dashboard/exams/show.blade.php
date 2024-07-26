@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    
     @livewireStyles
     @section('title')
         إجراء اختبار

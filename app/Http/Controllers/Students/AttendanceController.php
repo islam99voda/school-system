@@ -35,20 +35,4 @@ class AttendanceController extends Controller
         return $this->Attendance->show($id);
     }
 
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
 }

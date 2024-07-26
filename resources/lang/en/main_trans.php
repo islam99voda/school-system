@@ -4,8 +4,8 @@ return [
 
     'Dashboard'=>'Dashboard',
     'Dashboard_page'=>'Dashboard',
-    'Main_title' => 'SchoolSystem School Management Program',
-    'Programname' => 'SchoolSystem School Management Program',
+    'Main_title' => 'SchoolSystem School Management',
+    'Programname' => 'SchoolSystem School Management',
     'change_language'=>'language',
     'Grades'=>'Grades',
     'Grades_list'=>'Grades List',

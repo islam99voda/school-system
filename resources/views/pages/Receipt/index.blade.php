@@ -2,13 +2,13 @@
 @section('css')
     
 @section('title')
-    سندات القبض
+    {{(__('definitions.receipt_students'))}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-   سندات القبض
+{{(__('definitions.receipt_students'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -28,10 +28,10 @@
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
-                                            <th>الاسم</th>
-                                            <th>المبلغ</th>
-                                            <th>البيان</th>
-                                            <th>العمليات</th>
+                                            <th>{{__('definitions.name')}}</th>
+                                            <th>{{__('definitions.amount')}}</th>
+                                            <th>{{__('definitions.description')}}</th>
+                                            <th>{{__('definitions.settings')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>

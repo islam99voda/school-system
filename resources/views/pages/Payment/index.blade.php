@@ -1,14 +1,14 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    
 @section('title')
-    سندات الصرف
+    {{ trans('definitions.Payment_students') }}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-   سندات الصرف
+    {{ trans('definitions.Payment_students') }}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -28,10 +28,10 @@
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
-                                            <th>الاسم</th>
-                                            <th>المبلغ</th>
-                                            <th>البيان</th>
-                                            <th>العمليات</th>
+                                            <th>{{ trans('definitions.name') }}</th>
+                                            <th>{{ trans('definitions.amount') }}</th>
+                                            <th>{{ trans('definitions.description') }}</th>
+                                            <th>{{ trans('definitions.settings') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>

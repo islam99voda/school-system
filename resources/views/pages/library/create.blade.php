@@ -1,14 +1,14 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+    
 @section('title')
-    اضافة كتاب جديد
+    {{(__('definitions.add_new_book'))}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    اضافة كتاب جديد
+    {{(__('definitions.add_new_book'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -35,7 +35,7 @@
                                 <div class="form-row">
 
                                     <div class="col">
-                                        <label for="title">اسم الكتاب</label>
+                                        <label for="title">{{(__('definitions.book_name'))}}</label>
                                         <input type="text" name="title" class="form-control">
                                     </div>
 
@@ -80,13 +80,13 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="academic_year">المرفقات : <span class="text-danger">*</span></label>
+                                            <label for="academic_year">{{(__('definitions.attachments'))}} : <span class="text-danger">*</span></label>
                                             <input type="file" accept="application/pdf" name="file_name" required>
                                         </div>
                                     </div>
                                 </div>
 
-                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">حفظ البيانات</button>
+                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" type="submit">{{(__('definitions.submit'))}}</button>
                             </form>
                         </div>
                     </div>

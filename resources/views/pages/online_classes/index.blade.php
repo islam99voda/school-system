@@ -1,14 +1,14 @@
 @extends('layouts.master')
 @section('css')
-    @toastr_css
+   
 @section('title')
-    حصص اونلاين
+    {{(__('definitions.online_classes'))}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    حصص اونلاين
+    {{(__('definitions.online_classes'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -21,7 +21,7 @@
                     <div class="col-xl-12 mb-30">
                         <div class="card card-statistics h-100">
                             <div class="card-body">
-                                <a href="{{route('indirect.create')}}" class="btn btn-success" role="button" aria-pressed="true">اضافة حصة اونلاين جديدة</a>
+                                <a href="{{route('indirect.create')}}" class="btn btn-success" role="button" aria-pressed="true">{{(__('definitions.add_new_online_class'))}}</a>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -29,14 +29,14 @@
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
-                                            <th>المرحلة</th>
-                                            <th>الصف</th>
-                                            <th>القسم</th>
-                                            <th>عنوان الحصة</th>
-                                            <th>تاريخ البداية</th>
-                                            <th>وقت الحصة</th>
-                                            <th>رابط الحصة</th>
-                                            <th>العمليات</th>
+                                            <th>{{(__('definitions.grade'))}}</th>
+                                            <th>{{(__('definitions.classroom'))}}</th>
+                                            <th>{{(__('definitions.section'))}}</th>
+                                            <th>{{(__('definitions.topic_name'))}}</th>
+                                            <th>{{(__('definitions.start_at'))}}</th>
+                                            <th>{{(__('definitions.time_session'))}}</th>
+                                            <th>{{(__('definitions.join_url'))}}</th>
+                                            <th>{{(__('definitions.settings'))}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
