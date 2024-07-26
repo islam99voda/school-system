@@ -77,4 +77,10 @@ return [
     'start_url' => 'رابط البدء',
     'add_new_online_class' => 'اضافة حصة اونلاين جديدة',
     'zoom_live_sessions' => 'حصص اون لاين زووم',
+    'school_name' => 'اسم المدرسة',
+    'current_year' => 'السنة الحالية',
+    'address' => 'العنوان',
+    'end_second_term' => 'نهايةالفصل الثاني',
+    'logo_school' => 'شعار المدرسة',
+
 ];

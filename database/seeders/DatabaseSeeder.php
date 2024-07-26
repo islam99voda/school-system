@@ -13,6 +13,7 @@ use Database\Seeders\SectionsTableSeeder;
 use Database\Seeders\StudentsTableSeeder;
 use Database\Seeders\ClassroomTableSeeder;
 use Database\Seeders\NationalitiesTableSeeder;
+use Database\Seeders\SettingsTableSeeder as SeedersSettingsTableSeeder;
 use Database\Seeders\SpecializationsTableSeeder;
  
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(religionTableSeeder::class);
         $this->call(SpecializationsTableSeeder::class);
         $this->call(GenderTableSeeder::class);
+        $this->call(SeedersSettingsTableSeeder::class);
         // $this->call(ParentsTableSeeder::class);
         // $this->call(StudentsTableSeeder::class);
     }

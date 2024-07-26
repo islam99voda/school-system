@@ -76,6 +76,12 @@ return [
     'start_url' => 'Start URL',
     'add_new_online_class' => 'Add new online class',
     'zoom_live_sessions' => 'Zoom Live sessions',
+    'school_name' => 'School Name',
+    'current_year' => 'Current Year',
+    'address' => 'Address',
+    'end_first_term' => 'End First Term',
+    'end_second_term' => 'End Second Term',
+    'logo_school' => 'Logo School',
 
 
 ];

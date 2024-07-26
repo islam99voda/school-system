@@ -3,13 +3,13 @@
 @section('css')
 
 @section('title')
-    الاعدادات
+    {{(__('definitions.settings'))}}
 @stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
 @section('PageTitle')
-    الاعدادات
+{{(__('definitions.settings'))}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -36,13 +36,13 @@
                     <div class="row">
                         <div class="col-md-6 border-right-2 border-right-blue-400">
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">اسم المدرسة<span class="text-danger">*</span></label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.school_name'))}}<span class="text-danger">*</span></label>
                                 <div class="col-lg-9">
                                     <input name="school_name" value="{{ $setting['school_name'] }}" required type="text" class="form-control" placeholder="Name of School">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="current_session" class="col-lg-2 col-form-label font-weight-semibold">العام الحالي<span class="text-danger">*</span></label>
+                                <label for="current_session" class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.current_year'))}}<span class="text-danger">*</span></label>
                                 <div class="col-lg-9">
                                     <select data-placeholder="Choose..." required name="current_session" id="current_session" class="select-search form-control">
                                         <option value=""></option>
@@ -53,44 +53,44 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">اسم المدرسة المختصر</label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.school_name'))}}</label>
                                 <div class="col-lg-9">
                                     <input name="school_title" value="{{ $setting['school_title'] }}" type="text" class="form-control" placeholder="School Acronym">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">الهاتف</label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.phone'))}}</label>
                                 <div class="col-lg-9">
                                     <input name="phone" value="{{ $setting['phone'] }}" type="text" class="form-control" placeholder="Phone">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">البريد الالكتروني</label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.email'))}}</label>
                                 <div class="col-lg-9">
                                     <input name="school_email" value="{{ $setting['school_email'] }}" type="email" class="form-control" placeholder="School Email">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">عنوان المدرسة<span class="text-danger">*</span></label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.address'))}}<span class="text-danger">*</span></label>
                                 <div class="col-lg-9">
                                     <input required name="address" value="{{ $setting['address'] }}" type="text" class="form-control" placeholder="School Address">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">نهاية الترم الاول </label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.end_first_term'))}} </label>
                                 <div class="col-lg-9">
                                     <input name="end_first_term" value="{{ $setting['end_first_term'] }}" type="text" class="form-control date-pick" placeholder="Date Term Ends">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">نهاية الترم الثاني</label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.end_second_term'))}}</label>
                                 <div class="col-lg-9">
                                     <input name="end_second_term" value="{{ $setting['end_second_term'] }}" type="text" class="form-control date-pick" placeholder="Date Term Ends">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label font-weight-semibold">شعار المدرسة</label>
+                                <label class="col-lg-2 col-form-label font-weight-semibold">{{(__('definitions.logo_school'))}}</label>
                                 <div class="col-lg-9">
                                     <div class="mb-3">
                                         <img style="width: 100px" height="100px" src="{{ image_path('logo', $setting['logo']) }}" alt="">

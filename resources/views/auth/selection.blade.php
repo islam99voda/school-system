@@ -33,7 +33,7 @@
 
                     <div style="border-radius: 15px;" class="col-lg-8 col-md-8 bg-white">
                         <div class="login-fancy pb-40 clearfix">
-                            <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">اختر نوع المستخدم</h3>
+                            <h3 style="font-family: 'Cairo', font-size:30px; font-family: 'Cairo', sans-serif; margin-bottom: 30px; text-align: center;">اختر نوع المستخدم</h3>
                             <div class="form-inline">
                                 
                                 <a class="btn btn-default col-lg-3" title="طالب" href="{{route('login.show','student')}}">
