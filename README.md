@@ -27,7 +27,8 @@ The system supports multiple languages, allowing users to select their preferred
 ![8](https://github.com/user-attachments/assets/a75a8db5-f74e-4dd9-82f4-6631262ea560)
 
 
-![9](https://github.com/user-attachments/assets/da0fb064-6618-4ed6-b9a4-5cd19924f773)
+![9](https://github.com/user-attachments/assets/c24b7684-92d6-4999-8178-49dcaefeef15)
+
 
 
 ![10](https://github.com/user-attachments/assets/7f76103d-6b1c-4767-ab57-a70bb6a9bc3e)
